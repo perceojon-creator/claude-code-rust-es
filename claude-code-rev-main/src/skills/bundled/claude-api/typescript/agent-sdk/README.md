@@ -1,48 +1,23 @@
-# TypeScript Agent SDK
+# README
 
-Use the Claude Agent SDK when you want Claude Code style agents from Node or Bun, not just raw model calls. Install the package, create an agent, then run tasks through the harness.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Install
+## Ubicación
 
-```bash
-npm install @anthropic-ai/claude-agent-sdk
-```
+`claude-code-rev-main/src/skills/bundled/claude-api/typescript/agent-sdk/README.md`
 
-Set `ANTHROPIC_API_KEY` unless your runtime provides Claude Code style auth separately.
+## Descripción
 
-## Minimal flow
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-```ts
-import { Agent } from '@anthropic-ai/claude-agent-sdk'
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-const agent = new Agent({
-  model: 'claude-sonnet-4-6',
-  systemPrompt: 'You are a precise engineering assistant.',
-})
+## Uso recomendado
 
-const result = await agent.run('Summarize the repository layout.')
-console.log(result.outputText)
-```
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-## When to choose Agent SDK
+## Nota
 
-- Use Agent SDK for multi-step tasks, tool use, file edits, shell execution, or MCP access.
-- Use `@anthropic-ai/sdk` instead when you only need direct Messages API calls.
-
-## Practical guidance
-
-- Keep the system prompt short and role-specific.
-- Limit enabled tools to the minimum needed for the task.
-- Prefer explicit task boundaries such as “analyze only” or “edit only these files”.
-- Capture structured output in your application instead of parsing long prose after the fact.
-
-## Operational notes
-
-- Reuse agent instances for related work when you want consistent behavior.
-- Create fresh agents when permissions, tool sets, or task roles change materially.
-- Treat tool access as part of your security model; do not expose shell or file tools by default.
-
-## References
-
-- Anthropic docs: Claude Code SDK overview and API reference
-- GitHub: `anthropics/claude-agent-sdk-typescript`
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

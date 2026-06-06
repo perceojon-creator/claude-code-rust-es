@@ -1,40 +1,23 @@
-# TypeScript Files API
+# files api
 
-Use the Files API when the same file needs to be referenced across multiple requests instead of uploading bytes each time.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Typical flow
+## Ubicación
 
-1. Upload a file once.
-2. Store the returned file ID.
-3. Reference that file ID in later requests.
+`claude-code-rev-main/src/skills/bundled/claude-api/typescript/claude-api/files-api.md`
 
-## Upload example
+## Descripción
 
-```ts
-const file = await client.files.create({
-  file: new File(['hello'], 'example.txt', { type: 'text/plain' }),
-  purpose: 'user_data',
-})
-```
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-## Guidance
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-- Persist file IDs in your own database; they are the stable handle for reuse.
-- Use the Files API for repeated access, not one-off tiny payloads.
-- Validate file type and size before upload in your app code.
-- Treat uploaded files as user data and apply your normal retention rules.
+## Uso recomendado
 
-## Good fits
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-- multi-turn document workflows
-- repeated evaluation inputs
-- analysis pipelines that reuse the same source material
+## Nota
 
-## Avoid
-
-- uploading files on every request when the same content is reused
-- assuming a local path is meaningful to the API
-
-## References
-
-- Anthropic docs: Files API
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

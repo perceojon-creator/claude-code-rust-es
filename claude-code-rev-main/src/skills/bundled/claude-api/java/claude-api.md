@@ -1,47 +1,23 @@
-# Java Claude API
+# claude api
 
-For Java, a simple `HttpClient` integration is enough to get started.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Minimal Example
+## Ubicación
 
-```java
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+`claude-code-rev-main/src/skills/bundled/claude-api/java/claude-api.md`
 
-public class Main {
-  public static void main(String[] args) throws Exception {
-    String apiKey = System.getenv("ANTHROPIC_API_KEY");
-    String json = """
-      {
-        "model": "{{SONNET_ID}}",
-        "max_tokens": 512,
-        "messages": [
-          {"role": "user", "content": "List three production-readiness checks."}
-        ]
-      }
-      """;
+## Descripción
 
-    HttpRequest request = HttpRequest.newBuilder()
-        .uri(URI.create("https://api.anthropic.com/v1/messages"))
-        .header("x-api-key", apiKey)
-        .header("anthropic-version", "2023-06-01")
-        .header("content-type", "application/json")
-        .POST(HttpRequest.BodyPublishers.ofString(json))
-        .build();
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-    HttpClient client = HttpClient.newHttpClient();
-    HttpResponse<String> response =
-        client.send(request, HttpResponse.BodyHandlers.ofString());
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-    System.out.println(response.body());
-  }
-}
-```
+## Uso recomendado
 
-## Notes
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-- Parse the response with Jackson or your preferred JSON library once you know which fields you need.
-- Prefer a shared `HttpClient` and explicit timeouts.
-- For server apps, log request IDs and status codes so you can diagnose throttling and malformed requests quickly.
+## Nota
+
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

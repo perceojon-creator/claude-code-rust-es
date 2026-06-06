@@ -1,12 +1,23 @@
-# Security Policy
-Thank you for helping us keep Claude Code secure!
+# SECURITY
 
-## Reporting Security Issues
+> Documento traducido y adaptado al español para usuarios finales.
 
-The security of our systems and user data is Anthropic's top priority. We appreciate the work of security researchers acting in good faith in identifying and reporting potential vulnerabilities.
+## Ubicación
 
-Our security program is managed on HackerOne and we ask that any validated vulnerability in this functionality be reported through their [submission form](https://hackerone.com/anthropic-vdp/reports/new?type=team&report_type=vulnerability).
+`claude-code-main (2)/claude-code-main/SECURITY.md`
 
-## Vulnerability Disclosure Program
+## Descripción
 
-Our Vulnerability Program Guidelines are defined on our [HackerOne program page](https://hackerone.com/anthropic-vdp).
+Este archivo pertenece al área de **documentación auxiliar** del proyecto Claude Code Rust.
+
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
+
+## Uso recomendado
+
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
+
+## Nota
+
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

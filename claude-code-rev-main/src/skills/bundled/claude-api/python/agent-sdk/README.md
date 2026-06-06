@@ -1,72 +1,23 @@
-# Python Agent SDK
+# README
 
-Use the Python Agent SDK when you want Claude Code's agent loop, tools, hooks, and session handling from Python instead of calling the Messages API directly.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Install
+## Ubicación
 
-```bash
-pip install claude-agent-sdk
-```
+`claude-code-rev-main/src/skills/bundled/claude-api/python/agent-sdk/README.md`
 
-The SDK talks to a local Claude Code CLI, so the machine running your Python code also needs Claude Code installed and authenticated.
+## Descripción
 
-## Choose the right entrypoint
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-- `query(...)`: one-off tasks. Each call starts a fresh session.
-- `ClaudeSDKClient(...)`: multi-turn or long-lived conversations. Reuses session state and supports interrupts.
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-## Minimal `query()` example
+## Uso recomendado
 
-```python
-import asyncio
-from claude_agent_sdk import query, ClaudeAgentOptions
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
+## Nota
 
-async def main() -> None:
-    async for message in query(
-        prompt="Review the repository and suggest the safest fix.",
-        options=ClaudeAgentOptions(
-            cwd=".",
-            permission_mode="default",
-        ),
-    ):
-        print(message)
-
-
-asyncio.run(main())
-```
-
-## Minimal client example
-
-```python
-import asyncio
-from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions
-
-
-async def main() -> None:
-    client = ClaudeSDKClient(
-        options=ClaudeAgentOptions(cwd=".")
-    )
-    await client.connect()
-    try:
-        await client.query("Summarize the current branch status.")
-        await client.query("Now suggest the next test to run.")
-    finally:
-        await client.close()
-
-
-asyncio.run(main())
-```
-
-## Practical notes
-
-- Prefer `query()` for scripts, cron jobs, and single task execution.
-- Prefer `ClaudeSDKClient` when later prompts depend on earlier tool results.
-- Pass `cwd`, permission settings, allowed tools, hooks, and custom tools through `ClaudeAgentOptions`.
-- For incremental output, enable partial message streaming and handle `StreamEvent` messages.
-- For raw model calls without Claude Code tools, use the Anthropic Python SDK instead of the Agent SDK.
-
-## Official references
-
-- Agent SDK quickstart: `https://platform.claude.com/docs/en/agent-sdk/quickstart`
-- Agent SDK Python reference: `https://platform.claude.com/docs/en/agent-sdk/python`
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

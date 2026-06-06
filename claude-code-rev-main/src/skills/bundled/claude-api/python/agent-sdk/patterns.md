@@ -1,63 +1,23 @@
-# Python Agent SDK Patterns
+# patterns
 
-## Pattern 1: one-shot automation
+> Documento traducido y adaptado al español para usuarios finales.
 
-Use `query()` for isolated tasks such as "fix this file", "review this diff", or "generate release notes".
+## Ubicación
 
-```python
-async for message in query(
-    prompt="Inspect src/main.py and explain the bug.",
-    options=ClaudeAgentOptions(cwd="."),
-):
-    print(message)
-```
+`claude-code-rev-main/src/skills/bundled/claude-api/python/agent-sdk/patterns.md`
 
-Best when conversation history is not needed.
+## Descripción
 
-## Pattern 2: conversational workflow
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-Use `ClaudeSDKClient` when each answer should build on earlier context.
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-```python
-client = ClaudeSDKClient(options=ClaudeAgentOptions(cwd="."))
-await client.connect()
-await client.query("Read the auth flow.")
-await client.query("Now propose a refactor with minimal risk.")
-```
+## Uso recomendado
 
-Best for REPLs, chat UIs, or multi-step repair loops.
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-## Pattern 3: custom tools
+## Nota
 
-Expose deterministic local logic as tools and let Claude decide when to call them.
-
-```python
-from claude_agent_sdk import tool
-
-
-@tool("get_build_id", "Return the current build identifier", {})
-async def get_build_id(_args):
-    return {"content": [{"type": "text", "text": "build-2026-03-31"}]}
-```
-
-Keep tools narrow, typed, and side-effect conscious.
-
-## Pattern 4: hooks and policy
-
-Use hooks when you need approval gates, logging, or organization-specific constraints before or after tool use. Put policy in hooks or permission settings, not in the prompt alone.
-
-## Pattern 5: streaming UIs
-
-Enable partial messages when building terminal or web interfaces that should render text and tool calls as they arrive. Treat streamed events as incremental updates; keep the final `AssistantMessage` or `ResultMessage` as the source of truth.
-
-## Pattern 6: robust session control
-
-- Set `cwd` explicitly.
-- Set permission mode deliberately.
-- Close `ClaudeSDKClient` in `finally`.
-- Surface `CLINotFoundError`, connection errors, and permission denials to the caller.
-
-## When not to use the Agent SDK
-
-- Use the Anthropic Python SDK for plain `messages.create(...)` workflows.
-- Use the Messages API directly when you need raw API semantics, provider portability, or no Claude Code dependency.
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

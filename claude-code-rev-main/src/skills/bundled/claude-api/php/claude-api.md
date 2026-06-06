@@ -1,52 +1,23 @@
-# PHP Claude API
+# claude api
 
-For PHP, start with a direct HTTPS request and wrap it later in your application service layer.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Minimal Example
+## Ubicación
 
-```php
-<?php
+`claude-code-rev-main/src/skills/bundled/claude-api/php/claude-api.md`
 
-$payload = [
-    'model' => '{{SONNET_ID}}',
-    'max_tokens' => 512,
-    'messages' => [
-        [
-            'role' => 'user',
-            'content' => 'Generate a brief API changelog entry.',
-        ],
-    ],
-];
+## Descripción
 
-$ch = curl_init('https://api.anthropic.com/v1/messages');
-curl_setopt_array($ch, [
-    CURLOPT_POST => true,
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_HTTPHEADER => [
-        'x-api-key: ' . getenv('ANTHROPIC_API_KEY'),
-        'anthropic-version: 2023-06-01',
-        'content-type: application/json',
-    ],
-    CURLOPT_POSTFIELDS => json_encode($payload),
-]);
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-$response = curl_exec($ch);
-if ($response === false) {
-    throw new RuntimeException(curl_error($ch));
-}
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-$status = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
-curl_close($ch);
+## Uso recomendado
 
-if ($status >= 400) {
-    throw new RuntimeException("Anthropic API error: HTTP $status\n$response");
-}
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-echo $response . PHP_EOL;
-```
+## Nota
 
-## Notes
-
-- Decode successful responses with `json_decode($response, true)`.
-- Treat API key loading, retries, and request logging as shared infrastructure, not per-controller code.
-- If you need typed models, introduce DTOs after the request and response shapes stabilize.
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

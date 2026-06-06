@@ -1,52 +1,23 @@
-# TypeScript Tool Use
+# tool use
 
-Tool use lets Claude request structured actions from your application. Your code defines the tools, executes them, then sends tool results back into the conversation.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Define a tool
+## Ubicación
 
-```ts
-const tools = [
-  {
-    name: 'get_weather',
-    description: 'Fetch the current weather for a city',
-    input_schema: {
-      type: 'object',
-      properties: {
-        city: { type: 'string' },
-      },
-      required: ['city'],
-    },
-  },
-]
-```
+`claude-code-rev-main/src/skills/bundled/claude-api/typescript/claude-api/tool-use.md`
 
-## Request with tools
+## Descripción
 
-```ts
-const message = await client.messages.create({
-  model: 'claude-sonnet-4-6',
-  max_tokens: 1024,
-  tools,
-  messages: [{ role: 'user', content: 'What is the weather in Tokyo?' }],
-})
-```
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-If Claude returns a tool-use block, execute the named tool in your application, then append a `tool_result` turn and call the API again.
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-## Practical guidance
+## Uso recomendado
 
-- Keep tool schemas narrow and explicit.
-- Validate tool input before execution.
-- Return structured, minimal results instead of raw logs when possible.
-- Put authorization and side-effect checks in your code, not in the model prompt.
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-## Avoid
+## Nota
 
-- exposing shell or network primitives unless absolutely necessary
-- giving tools vague names or overly broad schemas
-- skipping retries and timeout handling around real integrations
-
-## References
-
-- Anthropic docs: tool use
-- Anthropic docs: Messages API
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

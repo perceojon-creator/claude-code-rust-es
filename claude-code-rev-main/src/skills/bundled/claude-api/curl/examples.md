@@ -1,61 +1,23 @@
-# cURL Examples
+# examples
 
-Use these when you want a raw HTTP baseline before moving to an SDK.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Basic Message
+## Ubicación
 
-```bash
-curl https://api.anthropic.com/v1/messages \
-  --header "x-api-key: $ANTHROPIC_API_KEY" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "content-type: application/json" \
-  --data '{
-    "model": "{{SONNET_ID}}",
-    "max_tokens": 256,
-    "messages": [
-      {"role": "user", "content": "Write a two-line release note summary."}
-    ]
-  }'
-```
+`claude-code-rev-main/src/skills/bundled/claude-api/curl/examples.md`
 
-## With System Prompt
+## Descripción
 
-```bash
-curl https://api.anthropic.com/v1/messages \
-  --header "x-api-key: $ANTHROPIC_API_KEY" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "content-type: application/json" \
-  --data '{
-    "model": "{{SONNET_ID}}",
-    "max_tokens": 256,
-    "system": "You are a terse technical assistant.",
-    "messages": [
-      {"role": "user", "content": "Explain eventual consistency in one paragraph."}
-    ]
-  }'
-```
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-## JSON Output Pattern
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-```bash
-curl https://api.anthropic.com/v1/messages \
-  --header "x-api-key: $ANTHROPIC_API_KEY" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "content-type: application/json" \
-  --data '{
-    "model": "{{SONNET_ID}}",
-    "max_tokens": 256,
-    "messages": [
-      {
-        "role": "user",
-        "content": "Return JSON only: {\"severity\": string, \"summary\": string} for a database outage."
-      }
-    ]
-  }'
-```
+## Uso recomendado
 
-## Notes
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-- Start with cURL when debugging headers, auth, or payload shape.
-- Move to a language client once the request body is stable.
-- For streaming, batches, and files, use the corresponding skill docs instead of extending these one-off shell commands.
+## Nota
+
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

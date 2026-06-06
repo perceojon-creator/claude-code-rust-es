@@ -1,70 +1,23 @@
-# Effort Parameter (Beta)
+# effort
 
-**Add effort set to `"high"` during migration.** This is the default configuration for best performance with Opus 4.5.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Overview
+## Ubicación
 
-Effort controls how eagerly Claude spends tokens. It affects all tokens: thinking, text responses, and function calls.
+`claude-code-main (2)/claude-code-main/plugins/claude-opus-4-5-migration/skills/claude-opus-4-5-migration/references/effort.md`
 
-| Effort | Use Case |
-|--------|----------|
-| `high` | Best performance, deep reasoning (default) |
-| `medium` | Balance of cost/latency vs. performance |
-| `low` | Simple, high-volume queries; significant token savings |
+## Descripción
 
-## Implementation
+Este archivo pertenece al área de **plugins y extensiones** del proyecto Claude Code Rust.
 
-Requires beta flag `effort-2025-11-24` in API calls.
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-**Python SDK:**
-```python
-response = client.messages.create(
-    model="claude-opus-4-5-20251101",
-    max_tokens=1024,
-    betas=["effort-2025-11-24"],
-    output_config={
-        "effort": "high"  # or "medium" or "low"
-    },
-    messages=[...]
-)
-```
+## Uso recomendado
 
-**TypeScript SDK:**
-```typescript
-const response = await client.messages.create({
-  model: "claude-opus-4-5-20251101",
-  max_tokens: 1024,
-  betas: ["effort-2025-11-24"],
-  output_config: {
-    effort: "high"  // or "medium" or "low"
-  },
-  messages: [...]
-});
-```
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-**Raw API:**
-```json
-{
-  "model": "claude-opus-4-5-20251101",
-  "max_tokens": 1024,
-  "anthropic-beta": "effort-2025-11-24",
-  "output_config": {
-    "effort": "high"
-  },
-  "messages": [...]
-}
-```
+## Nota
 
-## Effort vs. Thinking Budget
-
-Effort is independent of thinking budget:
-
-- High effort + no thinking = more tokens, but no thinking tokens
-- High effort + 32k thinking = more tokens, but thinking capped at 32k
-
-## Recommendations
-
-1. First determine effort level, then set thinking budget
-2. Best performance: high effort + high thinking budget
-3. Cost/latency optimization: medium effort
-4. Simple high-volume queries: low effort
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

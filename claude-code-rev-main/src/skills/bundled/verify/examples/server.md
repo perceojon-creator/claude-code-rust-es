@@ -1,32 +1,23 @@
-# Verify Server Example
+# server
 
-Use this pattern when the change affects an API handler, transport, worker, or server-side integration.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Example
+## Ubicación
 
-Change: update a request handler or startup bootstrap for a local service.
+`claude-code-rev-main/src/skills/bundled/verify/examples/server.md`
 
-Verification:
+## Descripción
 
-1. Start only the service or subprocess needed for the changed path.
-2. Send a minimal request that reaches the edited code.
-3. Confirm status, payload shape, and any important side effect.
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-```bash
-# Example pattern only; adapt to the repo's actual server entrypoint
-bun run dev -- --some-server-mode
-curl -i http://127.0.0.1:PORT/health
-```
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-## What to Look For
+## Uso recomendado
 
-- Process starts without crashing.
-- Request returns the expected status code.
-- Response shape matches the intended contract.
-- Logs do not show obvious runtime errors on the touched path.
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-## Good Result Summary
+## Nota
 
-- `Verified: server booted and accepted a health-check request.`
-- `Verified: the changed handler returned the expected status and payload.`
-- `Not verified: unrelated routes and production-only integrations.`
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

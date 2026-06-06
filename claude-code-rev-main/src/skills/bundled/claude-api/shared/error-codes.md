@@ -1,32 +1,23 @@
-# Error Codes
+# error codes
 
-Use this note when the user asks why an Anthropic API call failed or how to harden error handling.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## What To Check First
+## Ubicación
 
-- HTTP status code
-- Anthropic error type and message body
-- Whether the failure is transient or request-specific
-- Whether streaming failed before completion or before the first event
+`claude-code-rev-main/src/skills/bundled/claude-api/shared/error-codes.md`
 
-## Practical Triage
+## Descripción
 
-- `400`-class errors usually mean request shape, model choice, auth headers, or unsupported parameters need to be fixed before retrying.
-- `401` and `403` usually indicate key, workspace, or permission issues rather than a temporary outage.
-- `404` often means the referenced resource, model, batch, or file ID is wrong for the current API surface.
-- `429` should be handled with backoff, retry, and concurrency control.
-- `5xx` should be treated as transient service failures and retried with jittered exponential backoff.
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-## Implementation Guidance
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-- Log the Anthropic request ID when available so failed requests can be correlated.
-- Surface response body details in server logs, but avoid leaking full prompts or secrets to users.
-- Make retries idempotent where possible, especially for batch polling and file workflows.
-- Distinguish validation failures from transport failures in your code paths.
+## Uso recomendado
 
-## Recovery Pattern
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-1. Validate request construction locally.
-2. Retry only transient classes such as rate limits and server errors.
-3. For streaming, decide whether to resume, restart, or fall back to non-streaming output.
-4. If the user asks for exact current error semantics, verify against Anthropic’s live API reference.
+## Nota
+
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

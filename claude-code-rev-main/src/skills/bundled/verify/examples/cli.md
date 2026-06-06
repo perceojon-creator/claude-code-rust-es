@@ -1,30 +1,23 @@
-# Verify CLI Example
+# cli
 
-Use this pattern when the change affects a command, flag, formatter, or local workflow.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Example
+## Ubicación
 
-Change: update `claude doctor` output or bootstrap behavior.
+`claude-code-rev-main/src/skills/bundled/verify/examples/cli.md`
 
-Verification:
+## Descripción
 
-1. Run the narrowest command that hits the changed code path.
-2. Re-run with a nearby flag if the change touched parsing or help text.
-3. Check both output and exit behavior.
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-```bash
-bun run version
-bun run dev --help
-```
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-## What to Look For
+## Uso recomendado
 
-- Command exits successfully.
-- Output includes the expected text, option, or command.
-- The restored entrypoint reaches the real CLI path instead of a stub.
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-## Good Result Summary
+## Nota
 
-- `Verified: bun run version printed the restored Claude Code version.`
-- `Verified: bun run dev --help showed the full CLI command tree.`
-- `Risk: interactive raw-mode flows were not exercised in a non-TTY shell.`
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

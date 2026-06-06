@@ -1,31 +1,23 @@
-# Settings Examples
+# README
 
-Example Claude Code settings files, primarily intended for organization-wide deployments. Use these are starting points — adjust them to fit your needs.
+> Documento traducido y adaptado al español para usuarios finales.
 
-These may be applied at any level of the [settings hierarchy](https://code.claude.com/docs/en/settings#settings-files), though certain properties only take effect if specified in enterprise settings (e.g. `strictKnownMarketplaces`, `allowManagedHooksOnly`, `allowManagedPermissionRulesOnly`).
+## Ubicación
 
+`claude-code-main (2)/claude-code-main/examples/settings/README.md`
 
-## Configuration Examples
+## Descripción
 
-> [!WARNING]
-> These examples are community-maintained snippets which may be unsupported or incorrect. You are responsible for the correctness of your own settings configuration.
+Este archivo pertenece al área de **ejemplos** del proyecto Claude Code Rust.
 
-| Setting | [`settings-lax.json`](./settings-lax.json) | [`settings-strict.json`](./settings-strict.json) | [`settings-bash-sandbox.json`](./settings-bash-sandbox.json) |
-|---------|:---:|:---:|:---:|
-| Disable `--dangerously-skip-permissions` | ✅ | ✅ | |
-| Block plugin marketplaces | ✅ | ✅ | |
-| Block user and project-defined permission `allow` / `ask` / `deny` | | ✅ | ✅ |
-| Block user and project-defined hooks | | ✅ | |
-| Deny web fetch and search tools | | ✅ | |
-| Bash tool requires approval | | ✅ | |
-| Bash tool must run inside of sandbox | | | ✅ |
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-## Tips
-- Consider merging snippets of the above examples to reach your desired configuration
-- Settings files must be valid JSON
-- Before deploying configuration files to your organization, test them locally by applying to `managed-settings.json`, `settings.json` or `settings.local.json`
-- The `sandbox` property only applies to the `Bash` tool; it does not apply to other tools (like Read, Write, WebSearch, WebFetch, MCPs), hooks, or internal commands
+## Uso recomendado
 
-## Full Documentation
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-See https://code.claude.com/docs/en/settings for complete documentation on all available managed settings.
+## Nota
+
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

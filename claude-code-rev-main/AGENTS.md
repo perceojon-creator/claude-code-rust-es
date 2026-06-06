@@ -1,32 +1,23 @@
-# Repository Guidelines
+# AGENTS
 
-## Project Structure & Module Organization
-Core source lives in `src/`. Entry points and CLI wiring are under files such as `src/dev-entry.ts`, `src/main.tsx`, and `src/commands.ts`. Feature code is grouped by area in folders like `src/commands/`, `src/services/`, `src/components/`, `src/tools/`, and `src/utils/`. Restored or compatibility code also appears in `vendor/` and local package shims in `shims/`. There is no dedicated `test/` directory in the restored tree today; treat focused validation near the changed module as the default.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Build, Test, and Development Commands
-Use Bun for local development.
+## Ubicación
 
-- `bun install`: install dependencies and local shim packages.
-- `bun run dev`: start the restored CLI entrypoint interactively.
-- `bun run start`: alias for the development entrypoint.
-- `bun run version`: verify the CLI boots and prints its version.
+`claude-code-rev-main/AGENTS.md`
 
-If you change TypeScript modules, run the relevant command above and verify the affected flow manually. This repository does not currently expose a first-class `lint` or `test` script in `package.json`.
+## Descripción
 
-## Coding Style & Naming Conventions
-The codebase is TypeScript-first with ESM imports and `react-jsx`. Match the surrounding file style exactly: many files omit semicolons, use single quotes, and prefer descriptive camelCase for variables and functions, PascalCase for React components and manager classes, and kebab-case for command folders such as `src/commands/install-slack-app/`. Keep imports stable when comments warn against reordering. Prefer small, focused modules over broad utility dumps.
+Este archivo pertenece al área de **documentación auxiliar** del proyecto Claude Code Rust.
 
-## Testing Guidelines
-There is no consolidated automated test suite configured at the repository root yet. For contributor changes, use targeted runtime checks:
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-- boot the CLI with `bun run dev`
-- smoke-test version output with `bun run version`
-- exercise the specific command, service, or UI path you changed
+## Uso recomendado
 
-When adding tests, place them close to the feature they cover and name them after the module or behavior under test.
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-## Commit & Pull Request Guidelines
-Git history currently starts with a single `first commit`, so no strong conventional pattern is established. Use short, imperative commit subjects, for example `Fix MCP config normalization`. Pull requests should explain the user-visible impact, note restoration-specific tradeoffs, list validation steps, and include screenshots only for TUI/UI changes.
+## Nota
 
-## Restoration Notes
-This is a reconstructed source tree, not pristine upstream. Prefer minimal, auditable changes, and document any workaround added because a module was restored with fallbacks or shim behavior.
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

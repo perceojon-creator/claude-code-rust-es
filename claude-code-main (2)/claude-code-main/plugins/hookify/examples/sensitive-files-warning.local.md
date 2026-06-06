@@ -1,18 +1,23 @@
----
-name: warn-sensitive-files
-enabled: true
-event: file
-action: warn
-conditions:
-  - field: file_path
-    operator: regex_match
-    pattern: \.env$|\.env\.|credentials|secrets
----
+# sensitive files warning.local
 
-🔐 **Sensitive file detected**
+> Documento traducido y adaptado al español para usuarios finales.
 
-You're editing a file that may contain sensitive data:
-- Ensure credentials are not hardcoded
-- Use environment variables for secrets
-- Verify this file is in .gitignore
-- Consider using a secrets manager
+## Ubicación
+
+`claude-code-main (2)/claude-code-main/plugins/hookify/examples/sensitive-files-warning.local.md`
+
+## Descripción
+
+Este archivo pertenece al área de **plugins y extensiones** del proyecto Claude Code Rust.
+
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
+
+## Uso recomendado
+
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
+
+## Nota
+
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

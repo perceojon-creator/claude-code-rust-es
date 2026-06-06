@@ -1,51 +1,23 @@
----
-description: Verify a code change by running the app, the relevant command, or a focused server flow and reporting concrete evidence.
----
+# SKILL
 
-# Verify
+> Documento traducido y adaptado al español para usuarios finales.
 
-Use this skill when a task is not finished until the change is exercised.
+## Ubicación
 
-## Goal
+`claude-code-rev-main/src/skills/bundled/verify/SKILL.md`
 
-Produce a short verification result grounded in execution, not inference. Prefer the narrowest check that proves the changed behavior works.
+## Descripción
 
-## Workflow
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-1. Identify the changed surface area.
-2. Pick the smallest realistic verification path.
-3. Run the relevant command or request flow.
-4. Capture the observable result: exit status, key output, HTTP status, or changed behavior.
-5. Report what passed, what was not verified, and any remaining risk.
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-## Rules
+## Uso recomendado
 
-- Do not claim success without running something.
-- Prefer focused checks over broad smoke tests.
-- If the repo has no formal test target, use the nearest runnable workflow.
-- If a check is blocked by environment limits, state that explicitly.
-- Include exact commands when they are useful to repeat the verification.
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-## Verification Patterns
+## Nota
 
-### CLI changes
-
-- Run the exact command path affected by the edit.
-- Check help text, flags, output formatting, exit codes, and side effects.
-- For interactive flows, prefer the most scriptable subcommand first.
-
-See `examples/cli.md`.
-
-### Server changes
-
-- Start only the needed service.
-- Exercise the changed route, handler, or background path.
-- Validate status code, response shape, logs, and failure handling.
-
-See `examples/server.md`.
-
-## Reporting Format
-
-- `Verified:` what you ran and what passed.
-- `Not verified:` anything you could not run.
-- `Risk:` the main remaining uncertainty, if any.
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

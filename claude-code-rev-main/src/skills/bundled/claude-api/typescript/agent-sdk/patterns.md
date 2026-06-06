@@ -1,51 +1,23 @@
-# TypeScript Agent SDK Patterns
+# patterns
 
-## Narrow tool access
+> Documento traducido y adaptado al español para usuarios finales.
 
-Start with the smallest tool surface that can finish the task.
+## Ubicación
 
-```ts
-const agent = new Agent({
-  model: 'claude-sonnet-4-6',
-  systemPrompt: 'Review code and report findings only.',
-  allowedTools: ['Read', 'Glob', 'Grep'],
-})
-```
+`claude-code-rev-main/src/skills/bundled/claude-api/typescript/agent-sdk/patterns.md`
 
-Use write-capable tools only when the task truly requires edits.
+## Descripción
 
-## Separate planning from execution
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-For longer workflows, run an analysis pass first, then a second pass that can edit or execute.
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-```ts
-const review = await reviewAgent.run('Find the highest-risk regression.')
-const fix = await fixAgent.run(`Implement this change:\n\n${review.outputText}`)
-```
+## Uso recomendado
 
-This reduces accidental edits and makes logs easier to audit.
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-## Constrain the workspace
+## Nota
 
-- Pass explicit directories or file lists when the task is repo-scoped.
-- Prefer short user prompts with exact success criteria.
-- If the task is high risk, force structured output such as JSON or a checklist.
-
-## Use agents for orchestration, not hidden business logic
-
-- Keep validation, persistence, and authorization in application code.
-- Let the agent decide how to solve a task within boundaries you define.
-- Re-check outputs before applying them to production systems.
-
-## Good use cases
-
-- Repository review bots
-- Migration assistants
-- Incident triage helpers
-- Controlled code editing workflows
-
-## Avoid
-
-- Giving one agent unrestricted shell, network, and file access by default
-- Relying on implicit context instead of attaching the exact files or instructions
-- Treating agent text as trusted structured data without validation
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

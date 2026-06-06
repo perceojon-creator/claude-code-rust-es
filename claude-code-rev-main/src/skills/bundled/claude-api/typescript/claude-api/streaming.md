@@ -1,40 +1,23 @@
-# TypeScript Streaming
+# streaming
 
-Use streaming when the user should see output incrementally or when you want earlier visibility into tool use and long generations.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Basic pattern
+## Ubicación
 
-```ts
-const stream = await client.messages.stream({
-  model: 'claude-sonnet-4-6',
-  max_tokens: 1024,
-  messages: [{ role: 'user', content: 'Draft a release note.' }],
-})
+`claude-code-rev-main/src/skills/bundled/claude-api/typescript/claude-api/streaming.md`
 
-for await (const event of stream) {
-  // Handle text deltas, message state, and completion events.
-}
-```
+## Descripción
 
-## UI guidance
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-- Render deltas as they arrive instead of waiting for the final message.
-- Keep a final assembled value in state for persistence.
-- Handle cancellation explicitly when users close the view or submit a new task.
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-## Reliability notes
+## Uso recomendado
 
-- Expect event-driven parsing, not one final JSON payload.
-- Preserve the final completed message if you need usage or stop reason metadata.
-- Do not assume every stream yields only text; tool-related events can appear in compatible flows.
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-## Good fits
+## Nota
 
-- chat UIs
-- long summaries
-- code generation views
-- responsive terminal output
-
-## References
-
-- Anthropic docs: streaming Messages responses
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

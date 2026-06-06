@@ -1,34 +1,23 @@
-# Prompt Caching
+# prompt caching
 
-Use this note when the user wants lower repeated-context cost or faster repeated requests.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## When It Helps
+## Ubicación
 
-- Large static system prompts
-- Reused tool definitions
-- Long reference documents shared across many requests
-- Multi-turn workflows where a stable prefix repeats
+`claude-code-rev-main/src/skills/bundled/claude-api/shared/prompt-caching.md`
 
-## Structuring Advice
+## Descripción
 
-- Put reusable content first.
-- Keep the dynamic tail as small as possible.
-- Cache stable instructions, examples, tools, and reference context before volatile user input.
-- Avoid reordering cached sections between requests.
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-## Reasoning About Hits
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-- Cache usefulness depends on long shared prefixes, not just similar meaning.
-- Small structural changes near the top of the prompt can break reuse.
-- Tool definitions count toward the reusable prefix, so changing schemas can reduce hit rate.
+## Uso recomendado
 
-## Debugging Low Hit Rates
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-- Compare request prefixes, not just the final prompt text mentally.
-- Check whether timestamps, request IDs, or per-turn metadata are being inserted too early.
-- Make sure the application is not rebuilding tool definitions or examples in a different order.
+## Nota
 
-## Guidance For Answers
-
-- Explain caching as an optimization for repeated static prefix content.
-- If the user asks for current support matrix or exact API fields, verify against Anthropic’s live prompt caching docs.
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

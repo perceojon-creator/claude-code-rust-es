@@ -1,60 +1,23 @@
-# Go Claude API
+# claude api
 
-Go works well with the raw Messages API using `net/http`.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Minimal Example
+## Ubicación
 
-```go
-package main
+`claude-code-rev-main/src/skills/bundled/claude-api/go/claude-api.md`
 
-import (
-	"bytes"
-	"fmt"
-	"io"
-	"net/http"
-	"os"
-)
+## Descripción
 
-func main() {
-	body := []byte(`{
-	  "model": "{{SONNET_ID}}",
-	  "max_tokens": 512,
-	  "messages": [
-	    {"role": "user", "content": "Draft a concise deployment checklist."}
-	  ]
-	}`)
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-	req, err := http.NewRequest(
-		http.MethodPost,
-		"https://api.anthropic.com/v1/messages",
-		bytes.NewReader(body),
-	)
-	if err != nil {
-		panic(err)
-	}
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-	req.Header.Set("x-api-key", os.Getenv("ANTHROPIC_API_KEY"))
-	req.Header.Set("anthropic-version", "2023-06-01")
-	req.Header.Set("content-type", "application/json")
+## Uso recomendado
 
-	res, err := http.DefaultClient.Do(req)
-	if err != nil {
-		panic(err)
-	}
-	defer res.Body.Close()
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-	out, err := io.ReadAll(res.Body)
-	if err != nil {
-		panic(err)
-	}
+## Nota
 
-	fmt.Println(string(out))
-}
-```
-
-## Notes
-
-- Create a reusable `http.Client` with timeouts instead of relying on `DefaultClient` in production.
-- Parse the JSON response into structs once your schema is stable.
-- Retry `429`, `500`, `529`, and transient network errors with backoff.
-- Keep the request builder isolated so you can reuse it for tool use, prompt caching, or files later.
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

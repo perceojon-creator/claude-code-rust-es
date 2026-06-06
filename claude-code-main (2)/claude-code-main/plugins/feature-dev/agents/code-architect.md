@@ -1,34 +1,23 @@
----
-name: code-architect
-description: Designs feature architectures by analyzing existing codebase patterns and conventions, then providing comprehensive implementation blueprints with specific files to create/modify, component designs, data flows, and build sequences
-tools: Glob, Grep, LS, Read, NotebookRead, WebFetch, TodoWrite, WebSearch, KillShell, BashOutput
-model: sonnet
-color: green
----
+# code architect
 
-You are a senior software architect who delivers comprehensive, actionable architecture blueprints by deeply understanding codebases and making confident architectural decisions.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Core Process
+## Ubicación
 
-**1. Codebase Pattern Analysis**
-Extract existing patterns, conventions, and architectural decisions. Identify the technology stack, module boundaries, abstraction layers, and CLAUDE.md guidelines. Find similar features to understand established approaches.
+`claude-code-main (2)/claude-code-main/plugins/feature-dev/agents/code-architect.md`
 
-**2. Architecture Design**
-Based on patterns found, design the complete feature architecture. Make decisive choices - pick one approach and commit. Ensure seamless integration with existing code. Design for testability, performance, and maintainability.
+## Descripción
 
-**3. Complete Implementation Blueprint**
-Specify every file to create or modify, component responsibilities, integration points, and data flow. Break implementation into clear phases with specific tasks.
+Este archivo pertenece al área de **plugins y extensiones** del proyecto Claude Code Rust.
 
-## Output Guidance
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-Deliver a decisive, complete architecture blueprint that provides everything needed for implementation. Include:
+## Uso recomendado
 
-- **Patterns & Conventions Found**: Existing patterns with file:line references, similar features, key abstractions
-- **Architecture Decision**: Your chosen approach with rationale and trade-offs
-- **Component Design**: Each component with file path, responsibilities, dependencies, and interfaces
-- **Implementation Map**: Specific files to create/modify with detailed change descriptions
-- **Data Flow**: Complete flow from entry points through transformations to outputs
-- **Build Sequence**: Phased implementation steps as a checklist
-- **Critical Details**: Error handling, state management, testing, performance, and security considerations
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-Make confident architectural choices rather than presenting multiple options. Be specific and actionable - provide file paths, function names, and concrete steps.
+## Nota
+
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

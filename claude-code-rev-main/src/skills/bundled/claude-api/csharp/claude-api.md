@@ -1,65 +1,23 @@
-# C# Claude API
+# claude api
 
-Use the Messages API over HTTPS when you need a minimal C# integration.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Prerequisites
+## Ubicación
 
-- Set `ANTHROPIC_API_KEY`
-- Use the Messages endpoint: `https://api.anthropic.com/v1/messages`
-- Send headers:
-  - `x-api-key`
-  - `anthropic-version: 2023-06-01`
-  - `content-type: application/json`
+`claude-code-rev-main/src/skills/bundled/claude-api/csharp/claude-api.md`
 
-## Minimal Example
+## Descripción
 
-```csharp
-using System.Net.Http.Headers;
-using System.Text;
-using System.Text.Json;
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-var apiKey = Environment.GetEnvironmentVariable("ANTHROPIC_API_KEY");
-using var http = new HttpClient();
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-http.DefaultRequestHeaders.Add("x-api-key", apiKey);
-http.DefaultRequestHeaders.Add("anthropic-version", "2023-06-01");
-http.DefaultRequestHeaders.Accept.Add(
-    new MediaTypeWithQualityHeaderValue("application/json")
-);
+## Uso recomendado
 
-var payload = new
-{
-    model = "{{SONNET_ID}}",
-    max_tokens = 512,
-    messages = new[]
-    {
-        new
-        {
-            role = "user",
-            content = "Summarize why prompt caching helps repeated requests."
-        }
-    }
-};
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-var body = new StringContent(
-    JsonSerializer.Serialize(payload),
-    Encoding.UTF8,
-    "application/json"
-);
+## Nota
 
-var response = await http.PostAsync(
-    "https://api.anthropic.com/v1/messages",
-    body
-);
-response.EnsureSuccessStatusCode();
-
-var json = await response.Content.ReadAsStringAsync();
-Console.WriteLine(json);
-```
-
-## Notes
-
-- Read the first `content` block with `type: "text"` for normal text output.
-- Reuse one `HttpClient` across requests.
-- Add retries around `429` and `5xx` responses.
-- For structured output, keep your instructions explicit and validate the JSON after receipt.
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

@@ -1,82 +1,23 @@
----
-description: List all configured hookify rules
-allowed-tools: ["Glob", "Read", "Skill"]
----
+# list
 
-# List Hookify Rules
+> Documento traducido y adaptado al español para usuarios finales.
 
-**Load hookify:writing-rules skill first** to understand rule format.
+## Ubicación
 
-Show all configured hookify rules in the project.
+`claude-code-main (2)/claude-code-main/plugins/hookify/commands/list.md`
 
-## Steps
+## Descripción
 
-1. Use Glob tool to find all hookify rule files:
-   ```
-   pattern: ".claude/hookify.*.local.md"
-   ```
+Este archivo pertenece al área de **plugins y extensiones** del proyecto Claude Code Rust.
 
-2. For each file found:
-   - Use Read tool to read the file
-   - Extract frontmatter fields: name, enabled, event, pattern
-   - Extract message preview (first 100 chars)
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-3. Present results in a table:
+## Uso recomendado
 
-```
-## Configured Hookify Rules
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-| Name | Enabled | Event | Pattern | File |
-|------|---------|-------|---------|------|
-| warn-dangerous-rm | ✅ Yes | bash | rm\s+-rf | hookify.dangerous-rm.local.md |
-| warn-console-log | ✅ Yes | file | console\.log\( | hookify.console-log.local.md |
-| check-tests | ❌ No | stop | .* | hookify.require-tests.local.md |
+## Nota
 
-**Total**: 3 rules (2 enabled, 1 disabled)
-```
-
-4. For each rule, show a brief preview:
-```
-### warn-dangerous-rm
-**Event**: bash
-**Pattern**: `rm\s+-rf`
-**Message**: "⚠️ **Dangerous rm command detected!** This command could delete..."
-
-**Status**: ✅ Active
-**File**: .claude/hookify.dangerous-rm.local.md
-```
-
-5. Add helpful footer:
-```
----
-
-To modify a rule: Edit the .local.md file directly
-To disable a rule: Set `enabled: false` in frontmatter
-To enable a rule: Set `enabled: true` in frontmatter
-To delete a rule: Remove the .local.md file
-To create a rule: Use `/hookify` command
-
-**Remember**: Changes take effect immediately - no restart needed
-```
-
-## If No Rules Found
-
-If no hookify rules exist:
-
-```
-## No Hookify Rules Configured
-
-You haven't created any hookify rules yet.
-
-To get started:
-1. Use `/hookify` to analyze conversation and create rules
-2. Or manually create `.claude/hookify.my-rule.local.md` files
-3. See `/hookify:help` for documentation
-
-Example:
-```
-/hookify Warn me when I use console.log
-```
-
-Check `${CLAUDE_PLUGIN_ROOT}/examples/` for example rule files.
-```
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

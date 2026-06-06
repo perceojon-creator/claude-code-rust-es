@@ -1,53 +1,23 @@
----
-description: Cleans up all git branches marked as [gone] (branches that have been deleted on the remote but still exist locally), including removing associated worktrees.
----
+# clean gone
 
-## Your Task
+> Documento traducido y adaptado al español para usuarios finales.
 
-You need to execute the following bash commands to clean up stale local branches that have been deleted from the remote repository.
+## Ubicación
 
-## Commands to Execute
+`claude-code-main (2)/claude-code-main/plugins/commit-commands/commands/clean_gone.md`
 
-1. **First, list branches to identify any with [gone] status**
-   Execute this command:
-   ```bash
-   git branch -v
-   ```
-   
-   Note: Branches with a '+' prefix have associated worktrees and must have their worktrees removed before deletion.
+## Descripción
 
-2. **Next, identify worktrees that need to be removed for [gone] branches**
-   Execute this command:
-   ```bash
-   git worktree list
-   ```
+Este archivo pertenece al área de **plugins y extensiones** del proyecto Claude Code Rust.
 
-3. **Finally, remove worktrees and delete [gone] branches (handles both regular and worktree branches)**
-   Execute this command:
-   ```bash
-   # Process all [gone] branches, removing '+' prefix if present
-   git branch -v | grep '\[gone\]' | sed 's/^[+* ]//' | awk '{print $1}' | while read branch; do
-     echo "Processing branch: $branch"
-     # Find and remove worktree if it exists
-     worktree=$(git worktree list | grep "\\[$branch\\]" | awk '{print $1}')
-     if [ ! -z "$worktree" ] && [ "$worktree" != "$(git rev-parse --show-toplevel)" ]; then
-       echo "  Removing worktree: $worktree"
-       git worktree remove --force "$worktree"
-     fi
-     # Delete the branch
-     echo "  Deleting branch: $branch"
-     git branch -D "$branch"
-   done
-   ```
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-## Expected Behavior
+## Uso recomendado
 
-After executing these commands, you will:
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-- See a list of all local branches with their status
-- Identify and remove any worktrees associated with [gone] branches
-- Delete all branches marked as [gone]
-- Provide feedback on which worktrees and branches were removed
+## Nota
 
-If no branches are marked as [gone], report that no cleanup was needed.
-
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

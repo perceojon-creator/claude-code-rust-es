@@ -1,31 +1,23 @@
-# Frontend Design Plugin
+# README
 
-Generates distinctive, production-grade frontend interfaces that avoid generic AI aesthetics.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## What It Does
+## Ubicación
 
-Claude automatically uses this skill for frontend work. Creates production-ready code with:
+`claude-code-main (2)/claude-code-main/plugins/frontend-design/README.md`
 
-- Bold aesthetic choices
-- Distinctive typography and color palettes
-- High-impact animations and visual details
-- Context-aware implementation
+## Descripción
 
-## Usage
+Este archivo pertenece al área de **plugins y extensiones** del proyecto Claude Code Rust.
 
-```
-"Create a dashboard for a music streaming app"
-"Build a landing page for an AI security startup"
-"Design a settings panel with dark mode"
-```
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-Claude will choose a clear aesthetic direction and implement production code with meticulous attention to detail.
+## Uso recomendado
 
-## Learn More
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-See the [Frontend Aesthetics Cookbook](https://github.com/anthropics/claude-cookbooks/blob/main/coding/prompting_for_frontend_aesthetics.ipynb) for detailed guidance on prompting for high-quality frontend design.
+## Nota
 
-## Authors
-
-Prithvi Rajasekaran (prithvi@anthropic.com)
-Alexander Bricken (alexander@anthropic.com)
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

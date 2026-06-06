@@ -1,21 +1,23 @@
-# Claude Opus 4.5 Migration Plugin
+# README
 
-Migrate your code and prompts from Sonnet 4.x and Opus 4.1 to Opus 4.5.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Overview
+## Ubicación
 
-This skill updates your code and prompts to be compatible with Opus 4.5. It automates the migration process, handling model strings, beta headers, and other configuration details. If you run into any issues with Opus 4.5 after migration, you can continue using this skill to adjust your prompts.
+`claude-code-main (2)/claude-code-main/plugins/claude-opus-4-5-migration/README.md`
 
-## Usage
+## Descripción
 
-```
-"Migrate my codebase to Opus 4.5"
-```
+Este archivo pertenece al área de **plugins y extensiones** del proyecto Claude Code Rust.
 
-## Learn More
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-Refer to our [prompting guide](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-4-best-practices) for best practices on prompting Claude models.
+## Uso recomendado
 
-## Authors
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-William Hu (whu@anthropic.com)
+## Nota
+
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

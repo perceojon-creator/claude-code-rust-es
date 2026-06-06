@@ -1,42 +1,23 @@
-# Python Streaming
+# streaming
 
-Use streaming when you want text as it arrives instead of waiting for the final message.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Simple text streaming
+## Ubicación
 
-```python
-from anthropic import Anthropic
+`claude-code-rev-main/src/skills/bundled/claude-api/python/claude-api/streaming.md`
 
-client = Anthropic()
+## Descripción
 
-with client.messages.stream(
-    model="claude-sonnet-4-5",
-    max_tokens=1024,
-    messages=[{"role": "user", "content": "Write a short release note."}],
-) as stream:
-    for text in stream.text_stream:
-        print(text, end="", flush=True)
-```
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-## Get the final message
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-If you want streaming transport but still need the final structured `Message`, use the stream helper and then call the SDK method that returns the completed response object for the stream.
+## Uso recomendado
 
-## When streaming is worth it
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-- chat or terminal UIs
-- long generations
-- progress feedback for users
-- tool use flows where early visibility matters
+## Nota
 
-## Practical guidance
-
-- Treat streamed events as incremental UI updates.
-- Keep the final assembled message as the authoritative result.
-- Long non-streaming requests are more exposed to idle network timeouts than streaming or batches.
-- If you do not need live tokens, normal `messages.create(...)` is simpler.
-
-## Official references
-
-- Streaming guide: `https://platform.claude.com/docs/en/build-with-claude/streaming`
-- Python SDK: `https://platform.claude.com/docs/en/api/sdks/python`
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

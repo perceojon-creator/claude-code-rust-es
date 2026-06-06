@@ -1,77 +1,23 @@
-# Python Claude API
+# README
 
-Use the official Anthropic Python SDK for direct Claude API access from Python.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Install
+## Ubicación
 
-```bash
-pip install anthropic
-```
+`claude-code-rev-main/src/skills/bundled/claude-api/python/claude-api/README.md`
 
-Optional extras:
+## Descripción
 
-```bash
-pip install anthropic[aiohttp]
-pip install anthropic[bedrock]
-pip install anthropic[vertex]
-```
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-## Basic sync request
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-```python
-import os
-from anthropic import Anthropic
+## Uso recomendado
 
-client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-message = client.messages.create(
-    model="claude-sonnet-4-5",
-    max_tokens=1024,
-    messages=[
-        {"role": "user", "content": "Summarize the latest changelog."}
-    ],
-)
+## Nota
 
-print(message.content)
-```
-
-## Async request
-
-```python
-import os
-import asyncio
-from anthropic import AsyncAnthropic
-
-
-async def main() -> None:
-    client = AsyncAnthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
-    message = await client.messages.create(
-        model="claude-sonnet-4-5",
-        max_tokens=1024,
-        messages=[{"role": "user", "content": "Hello, Claude"}],
-    )
-    print(message.content)
-
-
-asyncio.run(main())
-```
-
-## Use this SDK when
-
-- you want raw `messages.create(...)` access
-- you need sync or async Python clients
-- you are implementing streaming, tool use, batches, or Files API directly
-
-## Practical guidance
-
-- Prefer current stable model aliases or exact IDs your application supports.
-- Keep long-lived static context at the start of the request so prompt caching can help.
-- Use streaming for long outputs or latency-sensitive UIs.
-- Use Batches for large asynchronous jobs.
-- Use Files API when the same document or image must be referenced across requests.
-
-## Official references
-
-- Python SDK: `https://platform.claude.com/docs/en/api/sdks/python`
-- Client SDK overview: `https://platform.claude.com/docs/en/api/client-sdks`
-- Messages API reference: `https://platform.claude.com/docs/en/api/python/messages`
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

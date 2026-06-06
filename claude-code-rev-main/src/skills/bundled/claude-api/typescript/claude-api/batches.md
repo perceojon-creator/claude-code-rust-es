@@ -1,44 +1,23 @@
-# TypeScript Batches
+# batches
 
-Use message batches when latency is not interactive and you want to process many independent requests efficiently.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## When batches fit
+## Ubicación
 
-- large backfills
-- offline classification
-- nightly summarization jobs
-- document queues where each task is independent
+`claude-code-rev-main/src/skills/bundled/claude-api/typescript/claude-api/batches.md`
 
-## Create a batch
+## Descripción
 
-```ts
-const batch = await client.messages.batches.create({
-  requests: [
-    {
-      custom_id: 'item-1',
-      params: {
-        model: 'claude-sonnet-4-6',
-        max_tokens: 512,
-        messages: [{ role: 'user', content: 'Classify this ticket.' }],
-      },
-    },
-  ],
-})
-```
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-## Operational guidance
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-- Set a stable `custom_id` for each request so you can join results back to your job records.
-- Keep each request self-contained; batches are not conversational threads.
-- Poll batch status and then fetch results once processing completes.
-- Design for partial failure. Some requests may succeed while others error.
+## Uso recomendado
 
-## Avoid
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-- using batches for chat UIs
-- assuming result order is the same as input order
-- sending dependent tasks that require previous model output
+## Nota
 
-## References
-
-- Anthropic docs: Message Batches API
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

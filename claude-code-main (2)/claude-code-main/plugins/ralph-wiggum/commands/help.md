@@ -1,126 +1,23 @@
----
-description: "Explain Ralph Wiggum technique and available commands"
----
+# help
 
-# Ralph Wiggum Plugin Help
+> Documento traducido y adaptado al español para usuarios finales.
 
-Please explain the following to the user:
+## Ubicación
 
-## What is the Ralph Wiggum Technique?
+`claude-code-main (2)/claude-code-main/plugins/ralph-wiggum/commands/help.md`
 
-The Ralph Wiggum technique is an iterative development methodology based on continuous AI loops, pioneered by Geoffrey Huntley.
+## Descripción
 
-**Core concept:**
-```bash
-while :; do
-  cat PROMPT.md | claude-code --continue
-done
-```
+Este archivo pertenece al área de **plugins y extensiones** del proyecto Claude Code Rust.
 
-The same prompt is fed to Claude repeatedly. The "self-referential" aspect comes from Claude seeing its own previous work in the files and git history, not from feeding output back as input.
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-**Each iteration:**
-1. Claude receives the SAME prompt
-2. Works on the task, modifying files
-3. Tries to exit
-4. Stop hook intercepts and feeds the same prompt again
-5. Claude sees its previous work in the files
-6. Iteratively improves until completion
+## Uso recomendado
 
-The technique is described as "deterministically bad in an undeterministic world" - failures are predictable, enabling systematic improvement through prompt tuning.
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-## Available Commands
+## Nota
 
-### /ralph-loop <PROMPT> [OPTIONS]
-
-Start a Ralph loop in your current session.
-
-**Usage:**
-```
-/ralph-loop "Refactor the cache layer" --max-iterations 20
-/ralph-loop "Add tests" --completion-promise "TESTS COMPLETE"
-```
-
-**Options:**
-- `--max-iterations <n>` - Max iterations before auto-stop
-- `--completion-promise <text>` - Promise phrase to signal completion
-
-**How it works:**
-1. Creates `.claude/.ralph-loop.local.md` state file
-2. You work on the task
-3. When you try to exit, stop hook intercepts
-4. Same prompt fed back
-5. You see your previous work
-6. Continues until promise detected or max iterations
-
----
-
-### /cancel-ralph
-
-Cancel an active Ralph loop (removes the loop state file).
-
-**Usage:**
-```
-/cancel-ralph
-```
-
-**How it works:**
-- Checks for active loop state file
-- Removes `.claude/.ralph-loop.local.md`
-- Reports cancellation with iteration count
-
----
-
-## Key Concepts
-
-### Completion Promises
-
-To signal completion, Claude must output a `<promise>` tag:
-
-```
-<promise>TASK COMPLETE</promise>
-```
-
-The stop hook looks for this specific tag. Without it (or `--max-iterations`), Ralph runs infinitely.
-
-### Self-Reference Mechanism
-
-The "loop" doesn't mean Claude talks to itself. It means:
-- Same prompt repeated
-- Claude's work persists in files
-- Each iteration sees previous attempts
-- Builds incrementally toward goal
-
-## Example
-
-### Interactive Bug Fix
-
-```
-/ralph-loop "Fix the token refresh logic in auth.ts. Output <promise>FIXED</promise> when all tests pass." --completion-promise "FIXED" --max-iterations 10
-```
-
-You'll see Ralph:
-- Attempt fixes
-- Run tests
-- See failures
-- Iterate on solution
-- In your current session
-
-## When to Use Ralph
-
-**Good for:**
-- Well-defined tasks with clear success criteria
-- Tasks requiring iteration and refinement
-- Iterative development with self-correction
-- Greenfield projects
-
-**Not good for:**
-- Tasks requiring human judgment or design decisions
-- One-shot operations
-- Tasks with unclear success criteria
-- Debugging production issues (use targeted debugging instead)
-
-## Learn More
-
-- Original technique: https://ghuntley.com/ralph/
-- Ralph Orchestrator: https://github.com/mikeyobrien/ralph-orchestrator
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

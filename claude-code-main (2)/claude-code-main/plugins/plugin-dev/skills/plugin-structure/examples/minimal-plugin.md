@@ -1,83 +1,23 @@
-# Minimal Plugin Example
+# minimal plugin
 
-A bare-bones plugin with a single command.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Directory Structure
+## Ubicación
 
-```
-hello-world/
-├── .claude-plugin/
-│   └── plugin.json
-└── commands/
-    └── hello.md
-```
+`claude-code-main (2)/claude-code-main/plugins/plugin-dev/skills/plugin-structure/examples/minimal-plugin.md`
 
-## File Contents
+## Descripción
 
-### .claude-plugin/plugin.json
+Este archivo pertenece al área de **plugins y extensiones** del proyecto Claude Code Rust.
 
-```json
-{
-  "name": "hello-world"
-}
-```
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-### commands/hello.md
+## Uso recomendado
 
-```markdown
----
-name: hello
-description: Prints a friendly greeting message
----
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-# Hello Command
+## Nota
 
-Print a friendly greeting to the user.
-
-## Implementation
-
-Output the following message to the user:
-
-> Hello! This is a simple command from the hello-world plugin.
->
-> Use this as a starting point for building more complex plugins.
-
-Include the current timestamp in the greeting to show the command executed successfully.
-```
-
-## Usage
-
-After installing the plugin:
-
-```
-$ claude
-> /hello
-Hello! This is a simple command from the hello-world plugin.
-
-Use this as a starting point for building more complex plugins.
-
-Executed at: 2025-01-15 14:30:22 UTC
-```
-
-## Key Points
-
-1. **Minimal manifest**: Only the required `name` field
-2. **Single command**: One markdown file in `commands/` directory
-3. **Auto-discovery**: Claude Code finds the command automatically
-4. **No dependencies**: No scripts, hooks, or external resources
-
-## When to Use This Pattern
-
-- Quick prototypes
-- Single-purpose utilities
-- Learning plugin development
-- Internal team tools with one specific function
-
-## Extending This Plugin
-
-To add more functionality:
-
-1. **Add commands**: Create more `.md` files in `commands/`
-2. **Add metadata**: Update `plugin.json` with version, description, author
-3. **Add agents**: Create `agents/` directory with agent definitions
-4. **Add hooks**: Create `hooks/hooks.json` for event handling
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

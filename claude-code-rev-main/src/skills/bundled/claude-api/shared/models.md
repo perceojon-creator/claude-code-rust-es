@@ -1,26 +1,23 @@
-# Models
+# models
 
-Use this note when the user asks which Claude model to choose or how model naming works.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Selection Heuristic
+## Ubicación
 
-- Use Opus for the hardest reasoning, long-horizon planning, or highest-stakes coding tasks.
-- Use Sonnet as the default general-purpose choice for most product and engineering workloads.
-- Use Haiku when latency and cost matter more than peak reasoning depth.
+`claude-code-rev-main/src/skills/bundled/claude-api/shared/models.md`
 
-## Model Naming Guidance
+## Descripción
 
-- Anthropic exposes dated model IDs. Prefer exact IDs in shipped code when reproducibility matters.
-- User-facing guidance can mention family names such as Opus, Sonnet, and Haiku, but implementation examples should use concrete model IDs.
-- Do not invent date suffixes. Verify current IDs against the live models overview if the user asks for exact names.
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-## Context And Capability
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-- Model family choice is only one dimension; prompt design, tool setup, caching, and streaming strategy also affect behavior.
-- Some advanced features may be model- or platform-specific. Confirm live availability before promising support.
-- If the user is deciding between Anthropic API, Bedrock, and Vertex, check the official model matrix because IDs differ by platform.
+## Uso recomendado
 
-## Practical Advice
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-- Default to the current Sonnet model for most app examples unless the user explicitly asks for premium capability or minimum cost.
-- For migration work, separate “API compatibility” from “behavior compatibility”; a model swap that compiles may still change output quality or tool behavior.
+## Nota
+
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

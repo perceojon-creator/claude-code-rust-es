@@ -1,18 +1,23 @@
----
-description: "Cancel active Ralph Wiggum loop"
-allowed-tools: ["Bash(test -f .claude/ralph-loop.local.md:*)", "Bash(rm .claude/ralph-loop.local.md)", "Read(.claude/ralph-loop.local.md)"]
-hide-from-slash-command-tool: "true"
----
+# cancel ralph
 
-# Cancel Ralph
+> Documento traducido y adaptado al español para usuarios finales.
 
-To cancel the Ralph loop:
+## Ubicación
 
-1. Check if `.claude/ralph-loop.local.md` exists using Bash: `test -f .claude/ralph-loop.local.md && echo "EXISTS" || echo "NOT_FOUND"`
+`claude-code-main (2)/claude-code-main/plugins/ralph-wiggum/commands/cancel-ralph.md`
 
-2. **If NOT_FOUND**: Say "No active Ralph loop found."
+## Descripción
 
-3. **If EXISTS**:
-   - Read `.claude/ralph-loop.local.md` to get the current iteration number from the `iteration:` field
-   - Remove the file using Bash: `rm .claude/ralph-loop.local.md`
-   - Report: "Cancelled Ralph loop (was at iteration N)" where N is the iteration value
+Este archivo pertenece al área de **plugins y extensiones** del proyecto Claude Code Rust.
+
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
+
+## Uso recomendado
+
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
+
+## Nota
+
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

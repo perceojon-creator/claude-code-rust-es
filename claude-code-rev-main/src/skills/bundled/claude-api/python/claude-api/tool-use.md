@@ -1,70 +1,23 @@
-# Python Tool Use
+# tool use
 
-Tool use lets Claude decide when to request a tool, emit a `tool_use` block, and continue after you return a matching `tool_result`.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Define tools
+## Ubicación
 
-```python
-tools = [
-    {
-        "name": "get_weather",
-        "description": "Return current weather for a city",
-        "input_schema": {
-            "type": "object",
-            "properties": {
-                "city": {"type": "string"},
-            },
-            "required": ["city"],
-        },
-    }
-]
-```
+`claude-code-rev-main/src/skills/bundled/claude-api/python/claude-api/tool-use.md`
 
-## First model call
+## Descripción
 
-```python
-message = client.messages.create(
-    model="claude-sonnet-4-5",
-    max_tokens=1024,
-    tools=tools,
-    messages=[
-        {"role": "user", "content": "What is the weather in Tokyo?"}
-    ],
-)
-```
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-## Handle `tool_use` and continue
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-Inspect `message.content` for blocks with `type == "tool_use"`. Execute the requested tool, then send a follow-up user message containing a `tool_result` block whose `tool_use_id` matches the tool call.
+## Uso recomendado
 
-```python
-messages = [
-    {"role": "user", "content": "What is the weather in Tokyo?"},
-    {"role": "assistant", "content": message.content},
-    {
-        "role": "user",
-        "content": [
-            {
-                "type": "tool_result",
-                "tool_use_id": tool_use.id,
-                "content": [{"type": "text", "text": "18C and clear"}],
-            }
-        ],
-    },
-]
-```
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-Then call `client.messages.create(...)` again with the updated message history.
+## Nota
 
-## Practical guidance
-
-- Keep tool schemas small and strict.
-- Return machine-readable data when possible.
-- Match `tool_use_id` exactly.
-- Expect multiple tool calls and possibly parallel tool requests.
-- If you want higher-level orchestration, consider the Agent SDK instead of manual tool loops.
-
-## Official references
-
-- Tool use overview: `https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview`
-- Python Messages API reference: `https://platform.claude.com/docs/en/api/python/messages`
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

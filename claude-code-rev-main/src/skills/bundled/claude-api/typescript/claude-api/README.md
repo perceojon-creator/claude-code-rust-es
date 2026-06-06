@@ -1,55 +1,23 @@
-# TypeScript Claude API
+# README
 
-Use `@anthropic-ai/sdk` for direct access to the Messages API from TypeScript.
+> Documento traducido y adaptado al español para usuarios finales.
 
-## Install
+## Ubicación
 
-```bash
-npm install @anthropic-ai/sdk
-```
+`claude-code-rev-main/src/skills/bundled/claude-api/typescript/claude-api/README.md`
 
-Set `ANTHROPIC_API_KEY` in the environment.
+## Descripción
 
-## Basic request
+Este archivo pertenece al área de **habilidades integradas** del proyecto Claude Code Rust.
 
-```ts
-import Anthropic from '@anthropic-ai/sdk'
+El repositorio se está manteniendo en español para facilitar su uso por usuarios finales. Los nombres de comandos, rutas, claves de configuración, funciones y ejemplos técnicos pueden conservar identificadores en inglés cuando forman parte del código o de una API.
 
-const client = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-})
+## Uso recomendado
 
-const message = await client.messages.create({
-  model: 'claude-sonnet-4-6',
-  max_tokens: 1024,
-  messages: [
-    { role: 'user', content: 'Summarize this change in 3 bullets.' },
-  ],
-})
-```
+- Consulta la documentación principal en [README.md](../../README.md) o en el README más cercano según la carpeta.
+- Mantén los identificadores técnicos sin traducir cuando sean necesarios para que el código funcione.
+- Traduce únicamente textos visibles, instrucciones y explicaciones para usuarios.
 
-Read text from `message.content` by filtering for `type === 'text'`.
+## Nota
 
-## Recommended request shape
-
-- Always set `model` and `max_tokens` explicitly.
-- Put instructions in a stable system prompt when they should apply across turns.
-- Keep user messages task-focused and attach only the context needed for the turn.
-- Use streaming for responsive UIs and tool use for structured external actions.
-
-## Conversation pattern
-
-Pass prior turns back in `messages` when you need continuity. Keep the conversation compact; summarize or trim old turns instead of replaying large transcripts forever.
-
-## Model choice
-
-- `claude-opus-4-6`: highest reasoning quality
-- `claude-sonnet-4-6`: general default for most product workloads
-- `claude-haiku-4-5`: lower-latency and lower-cost tasks
-
-Check the current model catalog before hard-coding IDs in production.
-
-## References
-
-- Anthropic docs: Messages API
-- Anthropic docs: model overview
+Este contenido reemplaza documentación original en otro idioma para mantener una experiencia consistente en español dentro de GitHub.

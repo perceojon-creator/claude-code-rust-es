@@ -37,7 +37,7 @@ impl Default for Sidebar {
             width: 260.0,
             conversations: vec![ConversationItem {
                 id: "1".to_string(),
-                title: "New Conversation".to_string(),
+                title: "Nueva conversación".to_string(),
                 timestamp: chrono::Utc::now(),
                 message_count: 0,
             }],
@@ -124,10 +124,10 @@ impl Sidebar {
             // Tab buttons
             let tabs = vec![
                 (Tab::Chat, "💬", "Chat"),
-                (Tab::History, "📜", "History"),
+                (Tab::History, "📜", "Historial"),
                 (Tab::Plugins, "🔌", "Plugins"),
-                (Tab::Tools, "🛠️", "Tools"),
-                (Tab::Settings, "⚙️", "Settings"),
+                (Tab::Tools, "🛠️", "Herramientas"),
+                (Tab::Settings, "⚙️", "Ajustes"),
             ];
 
             for (tab, icon, _tooltip) in tabs {
@@ -158,11 +158,14 @@ impl Sidebar {
 
     fn render_expanded(&mut self, ui: &mut Ui, theme: &super::Theme) {
         // New conversation button
-        let new_chat_button =
-            egui::Button::new(RichText::new("+  New Chat").strong().color(Color32::WHITE))
-                .fill(theme.primary_color())
-                .min_size(Vec2::new(ui.available_width(), 44.0))
-                .rounding(Rounding::same(10.0));
+        let new_chat_button = egui::Button::new(
+            RichText::new("+  Nuevo chat")
+                .strong()
+                .color(Color32::WHITE),
+        )
+        .fill(theme.primary_color())
+        .min_size(Vec2::new(ui.available_width(), 44.0))
+        .rounding(Rounding::same(10.0));
 
         if ui.add(new_chat_button).clicked() {
             self.create_new_conversation();
@@ -231,7 +234,7 @@ impl Sidebar {
 
         // Settings button at bottom
         let settings_button = egui::Button::new(
-            RichText::new("⚙️  Settings")
+            RichText::new("⚙️  Ajustes")
                 .color(theme.text_color())
                 .size(13.0),
         )
@@ -247,7 +250,7 @@ impl Sidebar {
 
     fn render_conversations_list(&mut self, ui: &mut Ui, theme: &super::Theme) {
         ui.label(
-            RichText::new("Recent conversations")
+            RichText::new("Conversaciones recientes")
                 .strong()
                 .color(theme.muted_text_color())
                 .size(12.0),
@@ -299,7 +302,7 @@ impl Sidebar {
 
     fn render_history(&mut self, ui: &mut Ui, theme: &super::Theme) {
         ui.label(
-            RichText::new("History")
+            RichText::new("Historial")
                 .strong()
                 .color(theme.muted_text_color())
                 .size(12.0),
@@ -307,10 +310,10 @@ impl Sidebar {
         ui.add_space(12.0);
 
         let history_items = vec![
-            ("Today", "3 chats"),
-            ("Yesterday", "5 chats"),
-            ("Last 7 days", "12 chats"),
-            ("Last 30 days", "28 chats"),
+            ("Hoy", "3 chats"),
+            ("Ayer", "5 chats"),
+            ("Últimos 7 días", "12 chats"),
+            ("Últimos 30 días", "28 chats"),
         ];
 
         for (item, count) in history_items {
@@ -338,7 +341,7 @@ impl Sidebar {
 
     fn render_plugins(&mut self, ui: &mut Ui, theme: &super::Theme) {
         ui.label(
-            RichText::new("Installed plugins")
+            RichText::new("Plugins instalados")
                 .strong()
                 .color(theme.muted_text_color())
                 .size(12.0),
@@ -346,10 +349,10 @@ impl Sidebar {
         ui.add_space(12.0);
 
         let plugins = vec![
-            ("🔌  File System", "Enabled", true),
-            ("🔌  Git Integration", "Enabled", true),
-            ("🔌  Code Analysis", "Disabled", false),
-            ("🔌  Terminal", "Enabled", true),
+            ("🔌  Sistema de archivos", "Activado", true),
+            ("🔌  Integración Git", "Activado", true),
+            ("🔌  Análisis de código", "Desactivado", false),
+            ("🔌  Terminal", "Activado", true),
         ];
 
         for (name, status, is_enabled) in plugins {
@@ -379,7 +382,7 @@ impl Sidebar {
         ui.add_space(12.0);
 
         let install_btn = egui::Button::new(
-            RichText::new("➕  Install Plugin")
+            RichText::new("➕  Instalar plugin")
                 .color(theme.primary_color())
                 .size(13.0),
         )
@@ -395,7 +398,7 @@ impl Sidebar {
 
     fn render_tools(&mut self, ui: &mut Ui, theme: &super::Theme) {
         ui.label(
-            RichText::new("Quick tools")
+            RichText::new("Herramientas rápidas")
                 .strong()
                 .color(theme.muted_text_color())
                 .size(12.0),
@@ -403,10 +406,10 @@ impl Sidebar {
         ui.add_space(12.0);
 
         let tools = vec![
-            ("📁", "File Explorer", "Browse files"),
-            ("🔍", "Search", "Search in codebase"),
-            ("⚡", "Terminal", "Execute commands"),
-            ("📝", "Editor", "Open code editor"),
+            ("📁", "Explorador de archivos", "Explorar archivos"),
+            ("🔍", "Buscar", "Buscar en la base de código"),
+            ("⚡", "Terminal", "Ejecutar comandos"),
+            ("📝", "Editor", "Abrir editor de código"),
         ];
 
         for (icon, name, desc) in tools {
@@ -441,7 +444,7 @@ impl Sidebar {
 
     fn render_settings_link(&mut self, ui: &mut Ui, theme: &super::Theme) {
         ui.label(
-            RichText::new("Quick Settings")
+            RichText::new("Ajustes rápidos")
                 .strong()
                 .color(theme.muted_text_color())
                 .size(12.0),
@@ -449,10 +452,10 @@ impl Sidebar {
         ui.add_space(12.0);
 
         let settings = vec![
-            ("🔑", "API Configuration", "Configure API keys"),
-            ("🎨", "Appearance", "Theme and colors"),
-            ("🔔", "Notifications", "Alert preferences"),
-            ("💾", "Data & Storage", "Manage your data"),
+            ("🔑", "Configuración de API", "Configurar claves de API"),
+            ("🎨", "Apariencia", "Tema y colores"),
+            ("🔔", "Notificaciones", "Preferencias de alertas"),
+            ("💾", "Datos y almacenamiento", "Gestionar tus datos"),
         ];
 
         for (icon, name, desc) in settings {
@@ -483,7 +486,7 @@ impl Sidebar {
     fn create_new_conversation(&mut self) {
         let new_conversation = ConversationItem {
             id: uuid::Uuid::new_v4().to_string(),
-            title: format!("Conversation {}", self.conversations.len() + 1),
+            title: format!("Conversación {}", self.conversations.len() + 1),
             timestamp: chrono::Utc::now(),
             message_count: 0,
         };

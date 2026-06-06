@@ -1,55 +1,23 @@
-# 安全政策
+# Seguridad
 
-## 报告安全漏洞
+## Reportar vulnerabilidades
 
-🚨 **请不要公开报告安全漏洞！**
+Si encuentras una vulnerabilidad, evita publicarla de forma irresponsable. Contacta a los mantenedores o abre un reporte privado si GitHub lo permite.
 
-如果你发现安全漏洞，请通过以下方式私密报告：
+Incluye:
 
-### GitHub Security Advisories
+- Descripción del problema.
+- Pasos para reproducirlo.
+- Impacto posible.
+- Versión o commit afectado.
 
-1. 访问项目的 "Security" 标签
-2. 点击 "Report a vulnerability"
-3. 填写完整的漏洞报告
+## Buenas prácticas para usuarios
 
-### 邮件报告
+- No publiques claves de API.
+- Usa variables de entorno o configuración local segura.
+- Revisa plugins antes de instalarlos.
+- Mantén Rust y dependencias actualizadas.
 
-发送至: [your-security-email@example.com]
+## Alcance
 
-请包含：
-- 漏洞描述
-- 受影响的版本
-- 复现步骤
-- 潜在影响
-
-## 响应时间
-
-- 初始回复: 48 小时内
-- 漏洞确认: 1 周内
-- 补丁发布: 2 周内 (关键漏洞优先)
-
-## 信息披露政策
-
-我们遵循 90 天的协调披露政策：
-
-1. 漏洞报告接收
-2. 安全团队评估
-3. 补丁开发和测试
-4. 新版本发布
-5. 公开安全公告
-6. 公开讨论漏洞
-
-## 支持的版本
-
-| 版本 | 状态 | 安全更新 |
-|:--:|:--:|:--:|
-| 0.1.x | 当前 | ✅ 有 |
-| 0.0.x | 已弃用 | ❌ 无 |
-
-## 已知漏洞
-
-当前无已知安全漏洞。
-
----
-
-感谢你们帮助我们保持项目的安全！🛡️
+Este proyecto incluye CLI, GUI, herramientas MCP, plugins y servicios. Cualquier fallo que permita ejecución no autorizada, fuga de claves o acceso indebido a archivos debe considerarse importante.

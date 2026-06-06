@@ -11,11 +11,11 @@ impl TemplateEngine {
     pub fn render_index(&self) -> String {
         format!(
             r#"<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claude Code Plugin Marketplace</title>
+    <title>Marketplace de Plugins de Claude Code</title>
     <style>
         * {{
             margin: 0;
@@ -264,82 +264,82 @@ impl TemplateEngine {
 <body>
     <div class="container">
         <header>
-            <h1>🔌 Claude Code Plugin Marketplace</h1>
-            <p class="subtitle">Discover and install plugins to extend Claude Code's capabilities</p>
+            <h1>🔌 Marketplace de Plugins de Claude Code</h1>
+            <p class="subtitle">Descubre e instala plugins para ampliar las capacidades de Claude Code</p>
 
             <div class="search-box">
-                <input type="text" placeholder="Search plugins..." id="searchInput">
+                <input type="text" placeholder="Buscar plugins..." id="searchInput">
             </div>
         </header>
 
         <div class="categories">
             <div class="category">
                 <div class="category-icon">🛠️</div>
-                <div class="category-name">Tools</div>
+                <div class="category-name">Herramientas</div>
                 <div class="category-count">45 plugins</div>
             </div>
             <div class="category">
                 <div class="category-icon">🔌</div>
-                <div class="category-name">Integrations</div>
+                <div class="category-name">Integraciones</div>
                 <div class="category-count">32 plugins</div>
             </div>
             <div class="category">
                 <div class="category-icon">🎨</div>
-                <div class="category-name">Themes</div>
+                <div class="category-name">Temas</div>
                 <div class="category-count">18 plugins</div>
             </div>
             <div class="category">
                 <div class="category-icon">🌐</div>
-                <div class="category-name">Languages</div>
+                <div class="category-name">Idiomas</div>
                 <div class="category-count">24 plugins</div>
             </div>
             <div class="category">
                 <div class="category-icon">⚡</div>
-                <div class="category-name">Productivity</div>
+                <div class="category-name">Productividad</div>
                 <div class="category-count">28 plugins</div>
             </div>
             <div class="category">
                 <div class="category-icon">💻</div>
-                <div class="category-name">Development</div>
+                <div class="category-name">Desarrollo</div>
                 <div class="category-count">9 plugins</div>
             </div>
         </div>
 
         <div class="section">
             <div class="section-header">
-                <h2 class="section-title">🔥 Trending</h2>
-                <a href="/search?sort=downloads" class="view-all">View all →</a>
+                <h2 class="section-title">🔥 Tendencias</h2>
+                <a href="/search?sort=downloads" class="view-all">Ver todo →</a>
             </div>
             <div class="plugins-grid" id="trendingPlugins">
-                <!-- Plugins will be loaded here -->
+                <!-- Los plugins se cargarán aquí -->
             </div>
         </div>
 
         <div class="section">
             <div class="section-header">
-                <h2 class="section-title">✨ New Arrivals</h2>
-                <a href="/search?sort=newest" class="view-all">View all →</a>
+                <h2 class="section-title">✨ Nuevos plugins</h2>
+                <a href="/search?sort=newest" class="view-all">Ver todo →</a>
             </div>
             <div class="plugins-grid" id="newPlugins">
-                <!-- Plugins will be loaded here -->
+                <!-- Los plugins se cargarán aquí -->
             </div>
         </div>
 
         <div class="section">
             <div class="section-header">
-                <h2 class="section-title">⭐ Official Plugins</h2>
-                <a href="/search?filter=official" class="view-all">View all →</a>
+                <h2 class="section-title">⭐ Plugins oficiales</h2>
+                <a href="/search?filter=official" class="view-all">Ver todo →</a>
             </div>
             <div class="plugins-grid" id="officialPlugins">
-                <!-- Plugins will be loaded here -->
+                <!-- Los plugins se cargarán aquí -->
             </div>
         </div>
 
         <footer>
-            <p>Claude Code Plugin Marketplace v{}</p>
+            <p>Marketplace de Plugins de Claude Code v{}</p>
             <p style="margin-top: 0.5rem; font-size: 0.875rem;">
-                <a href="/api/health" style="color: #667eea;">API Health</a> •
-                <a href="/api/docs" style="color: #667eea;">API Docs</a>
+                <a href="/api/health" style="color: #667eea;">Estado de API</a> •
+                <a href="/api/docs" style="color: #667eea;">Documentación API</a>
             </p>
         </footer>
     </div>
@@ -357,7 +357,7 @@ impl TemplateEngine {
                     renderPlugins('officialPlugins', data.data.official);
                 }}
             }} catch (error) {{
-                console.error('Failed to load plugins:', error);
+                console.error('Error al cargar plugins:', error);
             }}
         }}
 
@@ -370,10 +370,10 @@ impl TemplateEngine {
                         <div class="plugin-info">
                             <div class="plugin-name">
                                 ${{plugin.name}}
-                                ${{plugin.is_official ? '<span class="badge badge-official">Official</span>' : ''}}
-                                ${{plugin.is_verified ? '<span class="badge badge-verified">Verified</span>' : ''}}
+                                ${{plugin.is_official ? '<span class="badge badge-official">Oficial</span>' : ''}}
+                                ${{plugin.is_verified ? '<span class="badge badge-verified">Verificado</span>' : ''}}
                             </div>
-                            <div class="plugin-author">by ${{plugin.author}}</div>
+                            <div class="plugin-author">por ${{plugin.author}}</div>
                         </div>
                     </div>
                     <div class="plugin-description">${{plugin.description}}</div>
@@ -382,7 +382,7 @@ impl TemplateEngine {
                             <span>⬇️ ${{formatNumber(plugin.downloads)}}</span>
                             <span class="plugin-rating">⭐ ${{plugin.rating}}</span>
                         </div>
-                        <button class="install-btn" onclick="installPlugin('${{plugin.id}}')">Install</button>
+                        <button class="install-btn" onclick="installPlugin('${{plugin.id}}')">Instalar</button>
                     </div>
                 </div>
             `).join('');
@@ -433,7 +433,7 @@ impl TemplateEngine {
     pub fn render_plugin_detail(&self, plugin_id: &str) -> String {
         format!(
             r#"<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -592,7 +592,7 @@ impl TemplateEngine {
                         <div class="stat-label">Version</div>
                     </div>
                 </div>
-                <button class="install-btn-large" onclick="installPlugin('{}')">Install Plugin</button>
+                <button class="install-btn-large" onclick="installPlugin('{}')">Instalar Plugin</button>
             </div>
         </div>
 
@@ -622,7 +622,7 @@ impl TemplateEngine {
                 if (data.success) {{
                     const plugin = data.data;
                     document.querySelector('.plugin-name').textContent = plugin.name;
-                    document.querySelector('.plugin-meta').textContent = `by ${{plugin.author}} • ${{plugin.license}} license`;
+                    document.querySelector('.plugin-meta').textContent = `por ${{plugin.author}} • ${{plugin.license}} license`;
                     document.getElementById('downloads').textContent = formatNumber(plugin.downloads);
                     document.getElementById('rating').textContent = '⭐ ' + plugin.rating;
                     document.getElementById('version').textContent = plugin.version;
@@ -673,7 +673,7 @@ impl TemplateEngine {
     pub fn render_search(&self) -> String {
         format!(
             r#"<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -842,19 +842,19 @@ impl TemplateEngine {
             <a href="/" class="back-link">← Back to Marketplace</a>
 
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search plugins...">
+                <input type="text" id="searchInput" placeholder="Buscar plugins...">
             </div>
 
             <div class="filters">
                 <div class="filter">
                     <select id="categoryFilter">
                         <option value="">All Categories</option>
-                        <option value="tools">Tools</option>
-                        <option value="integrations">Integrations</option>
-                        <option value="themes">Themes</option>
+                        <option value="tools">Herramientas</option>
+                        <option value="integrations">Integraciones</option>
+                        <option value="themes">Temas</option>
                         <option value="language-support">Language Support</option>
-                        <option value="productivity">Productivity</option>
-                        <option value="development">Development</option>
+                        <option value="productivity">Productividad</option>
+                        <option value="development">Desarrollo</option>
                     </select>
                 </div>
                 <div class="filter">
@@ -920,7 +920,7 @@ impl TemplateEngine {
                         <div class="plugin-icon">🔌</div>
                         <div class="plugin-info">
                             <div class="plugin-name">${{plugin.name}}</div>
-                            <div class="plugin-author">by ${{plugin.author}}</div>
+                            <div class="plugin-author">por ${{plugin.author}}</div>
                         </div>
                     </div>
                     <div class="plugin-description">${{plugin.description}}</div>

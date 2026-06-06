@@ -99,8 +99,8 @@ impl Default for ChatPanel {
     fn default() -> Self {
         Self {
             messages: vec![
-                ChatMessage::assistant("Hello! I'm Claude, your AI coding companion. I can help you with:")
-                    .with_thinking("The user has started a new conversation. I should greet them warmly and explain my capabilities.")
+                ChatMessage::assistant("¡Hola! Soy Claude, tu compañero de programación con IA. Puedo ayudarte con:")
+                    .with_thinking("El usuario inició una conversación nueva. Debo saludarlo cordialmente y explicar mis capacidades.")
             ],
             input_text: String::new(),
             is_loading: false,
@@ -192,7 +192,7 @@ impl ChatPanel {
             ui.add_space(8.0);
 
             ui.label(
-                RichText::new("Your AI coding companion - powered by Rust 🦀")
+                RichText::new("Tu compañero de programación con IA, impulsado por Rust 🦀")
                     .size(14.0)
                     .color(theme.muted_text_color()),
             );
@@ -203,16 +203,20 @@ impl ChatPanel {
             let capabilities = vec![
                 (
                     "💻",
-                    "Write & edit code",
-                    "Generate and modify code in any language",
+                    "Escribir y editar código",
+                    "Genera y modifica código en cualquier lenguaje",
                 ),
-                ("📁", "Read files", "View and analyze your codebase"),
-                ("🔍", "Search", "Find code patterns across your project"),
                 (
-                    "⚡",
-                    "Run commands",
-                    "Execute bash commands in your terminal",
+                    "📁",
+                    "Leer archivos",
+                    "Visualiza y analiza tu base de código",
                 ),
+                (
+                    "🔍",
+                    "Buscar",
+                    "Encuentra patrones de código en todo tu proyecto",
+                ),
+                ("⚡", "Ejecutar comandos", "Ejecuta comandos en tu terminal"),
             ];
 
             for (icon, title, desc) in capabilities {
@@ -434,9 +438,9 @@ impl ChatPanel {
         theme: &super::Theme,
     ) {
         let header_text = if *expanded {
-            "▼ Thinking"
+            "▼ Pensando"
         } else {
-            "▶ Thinking"
+            "▶ Pensando"
         };
 
         if ui
@@ -612,7 +616,7 @@ impl ChatPanel {
             "write_file" | "edit" => ("📝", "Edit", Color32::from_rgb(76, 175, 80)),
             "create_file" => ("✨", "Create", Color32::from_rgb(156, 39, 176)),
             "bash" | "execute" => ("⚡", "Bash", Color32::from_rgb(255, 152, 0)),
-            "search" => ("🔍", "Search", Color32::from_rgb(33, 150, 243)),
+            "search" => ("🔍", "Buscar", Color32::from_rgb(33, 150, 243)),
             "list_directory" => ("📁", "List", Color32::from_rgb(121, 85, 72)),
             _ => ("🔧", tool_call.name.as_str(), theme.border_color()),
         };

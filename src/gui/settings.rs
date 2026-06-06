@@ -39,7 +39,7 @@ impl Default for SettingsPanel {
             base_url: "https://api.deepseek.com".to_string(),
             model: "deepseek-reasoner".to_string(),
             theme: super::Theme::Dark,
-            language: "en".to_string(),
+            language: "es".to_string(),
             auto_save: true,
             notifications: true,
             telemetry: false,
@@ -124,9 +124,9 @@ impl SettingsPanel {
         let sections = vec![
             (SettingsSection::General, "⚙️", "General"),
             (SettingsSection::Api, "🔑", "API"),
-            (SettingsSection::Appearance, "🎨", "Appearance"),
+            (SettingsSection::Appearance, "🎨", "Apariencia"),
             (SettingsSection::Plugins, "🔌", "Plugins"),
-            (SettingsSection::Advanced, "⚡", "Advanced"),
+            (SettingsSection::Advanced, "⚡", "Avanzado"),
         ];
 
         for (section, icon, label) in sections {
@@ -155,18 +155,18 @@ impl SettingsPanel {
     }
 
     fn render_general_settings(&mut self, ui: &mut Ui, theme: &super::Theme) {
-        ui.heading(RichText::new("General Settings").color(theme.text_color()));
+        ui.heading(RichText::new("Ajustes generales").color(theme.text_color()));
         ui.add_space(16.0);
 
         // Language selection
         ui.group(|ui| {
-            ui.label(RichText::new("Language").strong().color(theme.text_color()));
+            ui.label(RichText::new("Idioma").strong().color(theme.text_color()));
             ui.add_space(4.0);
 
             egui::ComboBox::from_id_source("language")
                 .selected_text(&self.language)
                 .show_ui(ui, |ui| {
-                    ui.selectable_value(&mut self.language, "en".to_string(), "🇺🇸 English");
+                    ui.selectable_value(&mut self.language, "en".to_string(), "🇺🇸 Inglés");
                     ui.selectable_value(&mut self.language, "zh".to_string(), "🇨🇳 中文");
                     ui.selectable_value(&mut self.language, "ja".to_string(), "🇯🇵 日本語");
                     ui.selectable_value(&mut self.language, "es".to_string(), "🇪🇸 Español");
@@ -182,12 +182,12 @@ impl SettingsPanel {
             ui.checkbox(&mut self.auto_save, "");
             ui.vertical(|ui| {
                 ui.label(
-                    RichText::new("Auto-save conversations")
+                    RichText::new("Guardar conversaciones automáticamente")
                         .strong()
                         .color(theme.text_color()),
                 );
                 ui.label(
-                    RichText::new("Automatically save conversation history")
+                    RichText::new("Guarda automáticamente el historial de conversaciones")
                         .color(theme.muted_text_color())
                         .size(11.0),
                 );
@@ -201,12 +201,12 @@ impl SettingsPanel {
             ui.checkbox(&mut self.notifications, "");
             ui.vertical(|ui| {
                 ui.label(
-                    RichText::new("Enable notifications")
+                    RichText::new("Activar notificaciones")
                         .strong()
                         .color(theme.text_color()),
                 );
                 ui.label(
-                    RichText::new("Show notifications for important events")
+                    RichText::new("Muestra notificaciones de eventos importantes")
                         .color(theme.muted_text_color())
                         .size(11.0),
                 );
@@ -220,12 +220,12 @@ impl SettingsPanel {
             ui.checkbox(&mut self.telemetry, "");
             ui.vertical(|ui| {
                 ui.label(
-                    RichText::new("Enable telemetry")
+                    RichText::new("Activar telemetría")
                         .strong()
                         .color(theme.text_color()),
                 );
                 ui.label(
-                    RichText::new("Help improve Claude Code by sharing anonymous usage data")
+                    RichText::new("Ayuda a mejorar Claude Code compartiendo datos anónimos de uso")
                         .color(theme.muted_text_color())
                         .size(11.0),
                 );
@@ -234,29 +234,33 @@ impl SettingsPanel {
     }
 
     fn render_api_settings(&mut self, ui: &mut Ui, theme: &super::Theme) {
-        ui.heading(RichText::new("API Configuration").color(theme.text_color()));
+        ui.heading(RichText::new("Configuración de API").color(theme.text_color()));
         ui.add_space(16.0);
 
         // API Key
         ui.group(|ui| {
-            ui.label(RichText::new("API Key").strong().color(theme.text_color()));
+            ui.label(
+                RichText::new("Clave de API")
+                    .strong()
+                    .color(theme.text_color()),
+            );
             ui.add_space(4.0);
 
             ui.horizontal(|ui| {
                 let api_key_edit = egui::TextEdit::singleline(&mut self.api_key)
                     .password(true)
-                    .hint_text("Enter your API key")
+                    .hint_text("Introduce tu clave de API")
                     .desired_width(ui.available_width() - 100.0);
 
                 ui.add(api_key_edit);
 
-                if ui.button("Show").clicked() {
+                if ui.button("Mostrar").clicked() {
                     // Toggle visibility
                 }
             });
 
             ui.label(
-                RichText::new("Your API key is stored securely on your device")
+                RichText::new("Tu clave de API se guarda de forma segura en tu dispositivo")
                     .color(theme.muted_text_color())
                     .size(11.0),
             );
@@ -266,7 +270,7 @@ impl SettingsPanel {
 
         // Base URL
         ui.group(|ui| {
-            ui.label(RichText::new("Base URL").strong().color(theme.text_color()));
+            ui.label(RichText::new("URL base").strong().color(theme.text_color()));
             ui.add_space(4.0);
 
             ui.add(
@@ -280,7 +284,7 @@ impl SettingsPanel {
 
         // Model selection
         ui.group(|ui| {
-            ui.label(RichText::new("Model").strong().color(theme.text_color()));
+            ui.label(RichText::new("Modelo").strong().color(theme.text_color()));
             ui.add_space(4.0);
 
             egui::ComboBox::from_id_source("model")
@@ -314,7 +318,7 @@ impl SettingsPanel {
 
         // Save button
         let save_button = egui::Button::new(
-            RichText::new("💾 Save Settings")
+            RichText::new("💾 Guardar ajustes")
                 .strong()
                 .color(Color32::WHITE),
         )
@@ -333,7 +337,7 @@ impl SettingsPanel {
         // Test connection button
         ui.horizontal(|ui| {
             let test_button = egui::Button::new(
-                RichText::new("🔄 Test Connection")
+                RichText::new("🔄 Probar conexión")
                     .strong()
                     .color(Color32::WHITE),
             )
@@ -361,19 +365,19 @@ impl SettingsPanel {
     }
 
     fn render_appearance_settings(&mut self, ui: &mut Ui, theme: &super::Theme) {
-        ui.heading(RichText::new("Appearance").color(theme.text_color()));
+        ui.heading(RichText::new("Apariencia").color(theme.text_color()));
         ui.add_space(16.0);
 
         // Theme selection
         ui.group(|ui| {
-            ui.label(RichText::new("Theme").strong().color(theme.text_color()));
+            ui.label(RichText::new("Tema").strong().color(theme.text_color()));
             ui.add_space(8.0);
 
             ui.horizontal(|ui| {
                 let themes = vec![
-                    (super::Theme::Light, "☀️", "Light"),
-                    (super::Theme::Dark, "🌙", "Dark"),
-                    (super::Theme::System, "💻", "System"),
+                    (super::Theme::Light, "☀️", "Claro"),
+                    (super::Theme::Dark, "🌙", "Oscuro"),
+                    (super::Theme::System, "💻", "Sistema"),
                 ];
 
                 for (t, icon, label) in themes {
@@ -406,7 +410,7 @@ impl SettingsPanel {
         // Font size
         ui.group(|ui| {
             ui.label(
-                RichText::new("Font Size")
+                RichText::new("Tamaño de fuente")
                     .strong()
                     .color(theme.text_color()),
             );
@@ -431,12 +435,12 @@ impl SettingsPanel {
             ui.checkbox(&mut compact_mode, "");
             ui.vertical(|ui| {
                 ui.label(
-                    RichText::new("Compact mode")
+                    RichText::new("Modo compacto")
                         .strong()
                         .color(theme.text_color()),
                 );
                 ui.label(
-                    RichText::new("Reduce padding and margins for a more compact view")
+                    RichText::new("Reduce rellenos y márgenes para una vista más compacta")
                         .color(theme.muted_text_color())
                         .size(11.0),
                 );
@@ -445,25 +449,30 @@ impl SettingsPanel {
     }
 
     fn render_plugin_settings(&mut self, ui: &mut Ui, theme: &super::Theme) {
-        ui.heading(RichText::new("Plugin Settings").color(theme.text_color()));
+        ui.heading(RichText::new("Ajustes de plugins").color(theme.text_color()));
         ui.add_space(16.0);
 
         // Installed plugins list
         let plugins = vec![
-            ("File System", "1.0.0", "Access and manage files", true),
             (
-                "Git Integration",
-                "1.2.0",
-                "Git commands and repository management",
+                "Sistema de archivos",
+                "1.0.0",
+                "Acceso y gestión de archivos",
                 true,
             ),
             (
-                "Code Analysis",
+                "Integración Git",
+                "1.2.0",
+                "Comandos Git y gestión de repositorios",
+                true,
+            ),
+            (
+                "Análisis de código",
                 "0.9.0",
-                "Static code analysis tools",
+                "Herramientas de análisis estático de código",
                 false,
             ),
-            ("Terminal", "1.1.0", "Integrated terminal access", true),
+            ("Terminal", "1.1.0", "Acceso a terminal integrada", true),
         ];
 
         for (name, version, description, enabled) in plugins {
@@ -506,7 +515,7 @@ impl SettingsPanel {
 
         // Install new plugin button
         let install_button = egui::Button::new(
-            RichText::new("➕ Install Plugin")
+            RichText::new("➕ Instalar plugin")
                 .strong()
                 .color(Color32::WHITE),
         )
@@ -520,20 +529,20 @@ impl SettingsPanel {
     }
 
     fn render_advanced_settings(&mut self, ui: &mut Ui, theme: &super::Theme) {
-        ui.heading(RichText::new("Advanced Settings").color(theme.text_color()));
+        ui.heading(RichText::new("Ajustes avanzados").color(theme.text_color()));
         ui.add_space(16.0);
 
         // Cache settings
         ui.group(|ui| {
-            ui.label(RichText::new("Cache").strong().color(theme.text_color()));
+            ui.label(RichText::new("Caché").strong().color(theme.text_color()));
             ui.add_space(8.0);
 
             ui.horizontal(|ui| {
-                ui.label("Cache size: ");
+                ui.label("Tamaño de caché: ");
                 ui.label(RichText::new("125 MB").strong().color(theme.text_color()));
 
                 ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                    if ui.button("Clear Cache").clicked() {
+                    if ui.button("Limpiar caché").clicked() {
                         // Clear cache
                     }
                 });
@@ -545,17 +554,17 @@ impl SettingsPanel {
         // Data export/import
         ui.group(|ui| {
             ui.label(
-                RichText::new("Data Management")
+                RichText::new("Gestión de datos")
                     .strong()
                     .color(theme.text_color()),
             );
             ui.add_space(8.0);
 
             ui.horizontal(|ui| {
-                if ui.button("📥 Export Data").clicked() {
+                if ui.button("📥 Exportar datos").clicked() {
                     // Export data
                 }
-                if ui.button("📤 Import Data").clicked() {
+                if ui.button("📤 Importar datos").clicked() {
                     // Import data
                 }
             });
@@ -565,14 +574,18 @@ impl SettingsPanel {
 
         // Reset settings
         ui.group(|ui| {
-            ui.label(RichText::new("Reset").strong().color(theme.text_color()));
+            ui.label(
+                RichText::new("Restablecer")
+                    .strong()
+                    .color(theme.text_color()),
+            );
             ui.add_space(8.0);
 
             ui.horizontal(|ui| {
-                if ui.button("Reset Settings").clicked() {
+                if ui.button("Restablecer ajustes").clicked() {
                     // Reset to defaults
                 }
-                if ui.button("Clear All Data").clicked() {
+                if ui.button("Borrar todos los datos").clicked() {
                     // Clear all data
                 }
             });
@@ -582,16 +595,19 @@ impl SettingsPanel {
 
         // Developer options
         ui.collapsing(
-            RichText::new("Developer Options").color(theme.text_color()),
+            RichText::new("Opciones de desarrollador").color(theme.text_color()),
             |ui| {
                 let mut dev_mode = false;
-                ui.checkbox(&mut dev_mode, "Enable developer mode");
+                ui.checkbox(&mut dev_mode, "Activar modo desarrollador");
 
                 let mut debug_logging = false;
-                ui.checkbox(&mut debug_logging, "Enable debug logging");
+                ui.checkbox(&mut debug_logging, "Activar registro de depuración");
 
                 let mut experimental_features = false;
-                ui.checkbox(&mut experimental_features, "Enable experimental features");
+                ui.checkbox(
+                    &mut experimental_features,
+                    "Activar funciones experimentales",
+                );
             },
         );
     }

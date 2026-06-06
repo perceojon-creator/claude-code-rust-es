@@ -29,3 +29,9 @@ settings.json
 
 # Logs
 *.log
+
+# Nested copies of the upstream claude-code (TypeScript) repository
+# These are reference clones kept locally; they are not part of the Rust port.
+/claude-code-main/
+/claude-code-main (2)/
+/claude-code-rev-main/

@@ -69,8 +69,7 @@ impl LocaleLoader {
     fn normalize_placeholders(value: &str) -> String {
         static PLACEHOLDER_RE: OnceLock<Regex> = OnceLock::new();
         let regex = PLACEHOLDER_RE.get_or_init(|| {
-            Regex::new(r"\{\s*\$([A-Za-z0-9_]+)\s*\}")
-                .expect("placeholder regex must be valid")
+            Regex::new(r"\{\s*\$([A-Za-z0-9_]+)\s*\}").expect("placeholder regex must be valid")
         });
 
         regex.replace_all(value, "{$1}").into_owned()
@@ -142,6 +141,7 @@ impl LocaleLoader {
     }
 
     fn load_spanish(locale: &mut Locale) {
+        // Embedded es.ftl is preferred; this fallback keeps behavior stable when it is missing.
         Self::load_english(locale);
     }
 

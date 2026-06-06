@@ -11,148 +11,148 @@ pub use repl::Repl;
 use clap::{Parser, Subcommand};
 use std::path::PathBuf;
 
-/// Claude Code - AI-powered coding assistant
+/// Claude Code - asistente de programación con IA
 #[derive(Parser, Debug)]
 #[command(name = "claude-code")]
 #[command(author = "Anthropic")]
 #[command(version = "0.1.0")]
-#[command(about = "High-performance Rust implementation of Claude Code CLI")]
+#[command(about = "Implementación en Rust de alto rendimiento de Claude Code CLI")]
 #[command(disable_version_flag = true)]
 #[command(disable_help_subcommand = true)]
 pub struct CliArgs {
-    /// Path to the project directory
+    /// Ruta del directorio del proyecto
     #[arg(short, long, value_name = "PATH")]
     pub path: Option<PathBuf>,
 
-    /// Model to use (sonnet, opus, haiku)
+    /// Modelo a usar (sonnet, opus, haiku)
     #[arg(short, long, default_value = "sonnet")]
     pub model: String,
 
-    /// Enable verbose logging
+    /// Activar registro detallado
     #[arg(short, long)]
     pub verbose: bool,
 
-    /// Run in non-interactive mode
+    /// Ejecutar en modo no interactivo
     #[arg(short, long)]
     pub no_interactive: bool,
 
-    /// Print version information
+    /// Mostrar información de versión
     #[arg(long)]
     pub version: bool,
 
-    /// Print system information
+    /// Mostrar información del sistema
     #[arg(long)]
     pub info: bool,
 
-    /// Subcommands
+    /// Subcomandos
     #[command(subcommand)]
     pub command: Option<Commands>,
 }
 
 #[derive(Subcommand, Debug)]
 pub enum Commands {
-    /// Start an interactive REPL session
+    /// Iniciar una sesión REPL interactiva
     Repl {
-        /// Initial prompt to send
+        /// Prompt inicial para enviar
         #[arg(short, long)]
         prompt: Option<String>,
     },
 
-    /// Execute a single query
+    /// Ejecutar una consulta única
     Query {
-        /// The query to execute
+        /// Consulta a ejecutar
         #[arg(short, long)]
         prompt: String,
     },
 
-    /// Manage configuration settings
+    /// Gestionar la configuración
     Config {
         #[command(subcommand)]
         action: ConfigCommands,
     },
 
-    /// Manage MCP servers
+    /// Gestionar servidores MCP
     Mcp {
         #[command(subcommand)]
         action: McpCommands,
     },
 
-    /// Manage plugins
+    /// Gestionar plugins
     Plugin {
         #[command(subcommand)]
         action: PluginCommands,
     },
 
-    /// Manage memory and sessions
+    /// Gestionar memoria y sesiones
     Memory {
         #[command(subcommand)]
         action: MemoryCommands,
     },
 
-    /// Voice input mode
+    /// Modo de entrada por voz
     Voice {
-        /// Enable push-to-talk mode
+        /// Activar modo pulsar para hablar
         #[arg(short, long)]
         push_to_talk: bool,
     },
 
-    /// Initialize a new project
+    /// Inicializar un proyecto nuevo
     Init {
-        /// Project name
+        /// Nombre del proyecto
         #[arg(short, long)]
         name: Option<String>,
     },
 
-    /// Update to latest version
+    /// Actualizar a la última versión
     Update,
 
-    /// Show help and usage information
+    /// Mostrar ayuda e información de uso
     Help {
-        /// Topic to show help for
+        /// Tema sobre el que mostrar ayuda
         #[arg(short, long)]
         topic: Option<String>,
     },
 
-    /// Manage background services
+    /// Gestionar servicios en segundo plano
     Services {
         #[command(subcommand)]
         action: ServiceCommands,
     },
 
-    /// Run an agent
+    /// Ejecutar un agente
     Agent {
-        /// Agent type (guide, explore, plan, verify, general)
+        /// Tipo de agente (guide, explore, plan, verify, general)
         #[arg(short, long)]
         agent_type: String,
-        /// Prompt for the agent
+        /// Prompt para el agente
         #[arg(short, long)]
         prompt: String,
     },
 
-    /// Manage Magic Docs
+    /// Gestionar Magic Docs
     MagicDocs {
         #[command(subcommand)]
         action: MagicDocsCommands,
     },
 
-    /// Team memory sync
+    /// Sincronización de memoria de equipo
     TeamSync {
         #[command(subcommand)]
         action: TeamSyncCommands,
     },
 
-    /// Manage skills
+    /// Gestionar habilidades
     Skills {
         #[command(subcommand)]
         action: SkillsCommands,
     },
 
-    /// Run stress tests
+    /// Ejecutar pruebas de estrés
     StressTest {
-        /// Number of concurrent requests
+        /// Número de solicitudes concurrentes
         #[arg(short, long, default_value = "5")]
         concurrency: usize,
-        /// Number of iterations per request
+        /// Número de iteraciones por solicitud
         #[arg(short, long, default_value = "10")]
         iterations: usize,
     },
@@ -160,29 +160,29 @@ pub enum Commands {
 
 #[derive(Subcommand, Debug)]
 pub enum ConfigCommands {
-    /// Show current configuration
+    /// Mostrar configuración actual
     Show,
 
-    /// Set a configuration value
+    /// Establecer un valor de configuración
     Set {
-        /// Configuration key
+        /// Clave de configuración
         key: String,
-        /// Configuration value
+        /// Valor de configuración
         value: String,
     },
 
-    /// Reset configuration to defaults
+    /// Restablecer configuración predeterminada
     Reset,
 }
 
 #[derive(Subcommand, Debug)]
 pub enum McpCommands {
-    /// List configured MCP servers
+    /// Listar servidores MCP configurados
     List,
 
-    /// Add a new MCP server
+    /// Agregar un servidor MCP nuevo
     Add {
-        /// Server name (e.g. filesystem)
+        /// Nombre del servidor (ej. filesystem)
         name: String,
         /// Server command (可选，filesystem 可只用 --path)
         command: Option<String>,
@@ -191,13 +191,13 @@ pub enum McpCommands {
         path: Option<String>,
     },
 
-    /// Remove an MCP server
+    /// Eliminar un servidor MCP
     Remove {
         /// Server name
         name: String,
     },
 
-    /// Restart an MCP server
+    /// Reiniciar un servidor MCP
     Restart {
         /// Server name
         name: String,
@@ -206,184 +206,184 @@ pub enum McpCommands {
 
 #[derive(Subcommand, Debug)]
 pub enum PluginCommands {
-    /// List installed plugins
+    /// Listar plugins instalados
     List,
 
-    /// Install a plugin
+    /// Instalar un plugin
     Install {
-        /// Plugin name or URL
+        /// Nombre o URL del plugin
         plugin: String,
     },
 
-    /// Remove a plugin
+    /// Eliminar un plugin
     Remove {
-        /// Plugin name
+        /// Nombre del plugin
         name: String,
     },
 
-    /// Update all plugins
+    /// Actualizar todos los plugins
     Update,
 
-    /// Search for plugins
+    /// Buscar plugins
     Search {
-        /// Search query
+        /// Consulta de búsqueda
         query: String,
     },
 
-    /// Enable a plugin
+    /// Activar un plugin
     Enable {
-        /// Plugin name
+        /// Nombre del plugin
         name: String,
     },
 
-    /// Disable a plugin
+    /// Desactivar un plugin
     Disable {
-        /// Plugin name
+        /// Nombre del plugin
         name: String,
     },
 }
 
 #[derive(Subcommand, Debug)]
 pub enum MemoryCommands {
-    /// Show memory status
+    /// Mostrar estado de memoria
     Status,
 
-    /// Clear all memories
+    /// Borrar todas las memorias
     Clear,
 
-    /// Export memories
+    /// Exportar memorias
     Export {
-        /// Output file path
+        /// Ruta del archivo de salida
         #[arg(short, long)]
         output: PathBuf,
     },
 
-    /// Import memories
+    /// Importar memorias
     Import {
-        /// Input file path
+        /// Ruta del archivo de entrada
         input: PathBuf,
     },
 
-    /// Run memory consolidation (dream)
+    /// Ejecutar consolidación de memoria (dream)
     Dream,
 
-    /// Force AutoDream consolidation
+    /// Forzar consolidación AutoDream
     AutoDream,
 }
 
 #[derive(Subcommand, Debug)]
 pub enum ServiceCommands {
-    /// Show status of all services
+    /// Mostrar estado de todos los servicios
     Status,
 
-    /// Start all services
+    /// Iniciar todos los servicios
     Start,
 
-    /// Stop all services
+    /// Detener todos los servicios
     Stop,
 
-    /// Check AutoDream status
+    /// Comprobar estado de AutoDream
     AutoDream,
 
-    /// Check Voice status
+    /// Comprobar estado de Voz
     Voice,
 
-    /// Check Magic Docs status
+    /// Comprobar estado de Magic Docs
     MagicDocs,
 
-    /// Check Team Sync status
+    /// Comprobar estado de Team Sync
     TeamSync,
 
-    /// Check Plugins status
+    /// Comprobar estado de Plugins
     Plugins,
 
-    /// Check Agents status
+    /// Comprobar estado de Agentes
     Agents,
 }
 
 #[derive(Subcommand, Debug)]
 pub enum MagicDocsCommands {
-    /// List tracked Magic Docs
+    /// Listar Magic Docs rastreados
     List,
 
-    /// Check a file for Magic Doc header
+    /// Comprobar encabezado Magic Doc en un archivo
     Check {
-        /// File path to check
+        /// Ruta del archivo a comprobar
         file: String,
     },
 
-    /// Update a Magic Doc
+    /// Actualizar un Magic Doc
     Update {
-        /// File path to update
+        /// Ruta del archivo a actualizar
         file: String,
-        /// Context for update
+        /// Contexto para la actualización
         #[arg(short, long)]
         context: Option<String>,
     },
 
-    /// Clear all tracked Magic Docs
+    /// Borrar todos los Magic Docs rastreados
     Clear,
 }
 
 #[derive(Subcommand, Debug)]
 pub enum TeamSyncCommands {
-    /// Show sync status
+    /// Mostrar estado de sincronización
     Status,
 
-    /// Authenticate with team
+    /// Autenticarse con el equipo
     Auth {
-        /// Team ID
+        /// ID del equipo
         team_id: String,
     },
 
-    /// Sync memories
+    /// Sincronizar memorias
     Sync,
 
-    /// List team memories
+    /// Listar memorias del equipo
     List,
 
-    /// Create a team memory
+    /// Crear una memoria de equipo
     Create {
-        /// Memory title
+        /// Título de la memoria
         title: String,
-        /// Memory content
+        /// Contenido de la memoria
         #[arg(short, long)]
         content: String,
-        /// Tags (comma-separated)
+        /// Etiquetas (separadas por comas)
         #[arg(short, long)]
         tags: Option<String>,
     },
 
-    /// Delete a team memory
+    /// Eliminar una memoria de equipo
     Delete {
-        /// Memory ID
+        /// ID de memoria
         id: String,
     },
 }
 
 #[derive(Subcommand, Debug)]
 pub enum SkillsCommands {
-    /// List all available skills
+    /// Listar todas las habilidades disponibles
     List,
 
-    /// Execute a skill
+    /// Ejecutar una habilidad
     Execute {
-        /// Skill name
+        /// Nombre de la habilidad
         skill: String,
-        /// Arguments for the skill
+        /// Argumentos para la habilidad
         #[arg(trailing_var_arg = true)]
         args: Vec<String>,
     },
 
-    /// Get help for a skill
+    /// Obtener ayuda de una habilidad
     Help {
-        /// Skill name
+        /// Nombre de la habilidad
         skill: String,
     },
 
-    /// Search for skills
+    /// Buscar habilidades
     Search {
-        /// Search query
+        /// Consulta de búsqueda
         query: String,
     },
 }

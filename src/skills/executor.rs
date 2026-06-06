@@ -2,7 +2,7 @@
 //!
 //! Executes skills with parameter parsing and context management.
 
-use super::{Skill, SkillParams, SkillContext, SkillResult, SkillError};
+use super::{Skill, SkillContext, SkillError, SkillParams, SkillResult};
 use std::sync::Arc;
 
 /// Skill executor
@@ -62,12 +62,11 @@ impl SkillExecutor {
         input: &str,
         context: SkillContext,
     ) -> Result<SkillResult, SkillError> {
-        let skill = self.registry.get(skill_name)
-            .ok_or_else(|| SkillError {
-                message: format!("Skill not found: {}", skill_name),
-                code: "skill_not_found".to_string(),
-                details: None,
-            })?;
+        let skill = self.registry.get(skill_name).ok_or_else(|| SkillError {
+            message: format!("Skill not found: {}", skill_name),
+            code: "skill_not_found".to_string(),
+            details: None,
+        })?;
 
         let params = self.parse_input(input);
 
@@ -79,7 +78,11 @@ impl SkillExecutor {
     }
 
     /// Validate parameters against skill schema
-    fn validate_params(&self, _skill: Arc<dyn Skill>, _params: &SkillParams) -> Result<(), SkillError> {
+    fn validate_params(
+        &self,
+        _skill: Arc<dyn Skill>,
+        _params: &SkillParams,
+    ) -> Result<(), SkillError> {
         // Simple validation based on schema
         // In a full implementation, this would validate against JSON Schema
         Ok(())
@@ -92,7 +95,8 @@ impl SkillExecutor {
 
     /// Search skills
     pub fn search_skills(&self, keyword: &str) -> Vec<(String, String)> {
-        self.registry.search(keyword)
+        self.registry
+            .search(keyword)
             .iter()
             .map(|skill| (skill.name().to_string(), skill.description().to_string()))
             .collect()
@@ -100,12 +104,11 @@ impl SkillExecutor {
 
     /// Get skill help
     pub fn get_help(&self, skill_name: &str) -> Result<String, SkillError> {
-        let skill = self.registry.get(skill_name)
-            .ok_or_else(|| SkillError {
-                message: format!("Skill not found: {}", skill_name),
-                code: "skill_not_found".to_string(),
-                details: None,
-            })?;
+        let skill = self.registry.get(skill_name).ok_or_else(|| SkillError {
+            message: format!("Skill not found: {}", skill_name),
+            code: "skill_not_found".to_string(),
+            details: None,
+        })?;
 
         let schema = skill.parameter_schema();
         let examples = skill.examples();
@@ -124,7 +127,10 @@ impl SkillExecutor {
             help.push_str("\n");
         }
 
-        help.push_str(&format!("Parameter Schema:\n{}\n", serde_json::to_string_pretty(&schema).unwrap_or_default()));
+        help.push_str(&format!(
+            "Parameter Schema:\n{}\n",
+            serde_json::to_string_pretty(&schema).unwrap_or_default()
+        ));
 
         Ok(help)
     }

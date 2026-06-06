@@ -2,10 +2,10 @@
 //!
 //! Beautiful REPL interface matching the original Claude Code aesthetic
 
-use crate::api::{ApiClient, ChatMessage, ToolDefinition, ToolCall};
+use crate::api::{ApiClient, ChatMessage, ToolCall, ToolDefinition};
 use crate::cli::ui;
-use crate::state::AppState;
 use crate::mcp::ToolRegistry;
+use crate::state::AppState;
 use colored::Colorize;
 use std::io::{self, BufRead, Write};
 use std::sync::Arc;
@@ -59,7 +59,8 @@ impl Repl {
 
             match input {
                 "exit" | "quit" | ".exit" | ":q" => {
-                    println!("\n  {} {}\n",
+                    println!(
+                        "\n  {} {}\n",
                         "👋".yellow(),
                         "Goodbye!".truecolor(255, 140, 66).bold()
                     );
@@ -162,10 +163,12 @@ impl Repl {
                             println!();
                             for call in &calls {
                                 if let Some(func) = call.get("function") {
-                                    let tool_name = func.get("name")
+                                    let tool_name = func
+                                        .get("name")
                                         .and_then(|n| n.as_str())
                                         .unwrap_or("unknown");
-                                    println!("  {} Executing tool: {}",
+                                    println!(
+                                        "  {} Executing tool: {}",
                                         "🔧".truecolor(255, 200, 100),
                                         tool_name.cyan().bold()
                                     );
@@ -174,25 +177,28 @@ impl Repl {
                             println!();
 
                             // 添加 assistant 消息（带 tool_calls）
-                            let tool_calls_parsed: Vec<ToolCall> = calls.iter().filter_map(|call| {
-                                let id = call.get("id")?.as_str()?.to_string();
-                                let r#type = call.get("type")?.as_str()?.to_string();
-                                let func = call.get("function")?;
-                                let name = func.get("name")?.as_str()?.to_string();
-                                let arguments = func.get("arguments")?.as_str()?.to_string();
-                                Some(ToolCall {
-                                    id,
-                                    r#type,
-                                    function: crate::api::ToolCallFunction {
-                                        name,
-                                        arguments,
-                                    },
+                            let tool_calls_parsed: Vec<ToolCall> = calls
+                                .iter()
+                                .filter_map(|call| {
+                                    let id = call.get("id")?.as_str()?.to_string();
+                                    let r#type = call.get("type")?.as_str()?.to_string();
+                                    let func = call.get("function")?;
+                                    let name = func.get("name")?.as_str()?.to_string();
+                                    let arguments = func.get("arguments")?.as_str()?.to_string();
+                                    Some(ToolCall {
+                                        id,
+                                        r#type,
+                                        function: crate::api::ToolCallFunction { name, arguments },
+                                    })
                                 })
-                            }).collect();
+                                .collect();
 
                             let assistant_msg = ChatMessage {
                                 role: "assistant".to_string(),
-                                content: message.and_then(|m| m.get("content")).and_then(|c| c.as_str()).map(|s| s.to_string()),
+                                content: message
+                                    .and_then(|m| m.get("content"))
+                                    .and_then(|c| c.as_str())
+                                    .map(|s| s.to_string()),
                                 tool_calls: Some(tool_calls_parsed),
                                 tool_call_id: None,
                             };
@@ -202,12 +208,14 @@ impl Repl {
                             for call in &calls {
                                 if let (Some(id), Some(func)) = (
                                     call.get("id").and_then(|i| i.as_str()),
-                                    call.get("function")
+                                    call.get("function"),
                                 ) {
-                                    let tool_name = func.get("name")
+                                    let tool_name = func
+                                        .get("name")
                                         .and_then(|n| n.as_str())
                                         .unwrap_or("unknown");
-                                    let args_str = func.get("arguments")
+                                    let args_str = func
+                                        .get("arguments")
                                         .and_then(|a| a.as_str())
                                         .unwrap_or("{}");
 
@@ -234,7 +242,8 @@ impl Repl {
                         .and_then(|c| c.as_str())
                     {
                         ui::print_claude_message(content);
-                        self.conversation_history.push(ChatMessage::assistant(content.to_string()));
+                        self.conversation_history
+                            .push(ChatMessage::assistant(content.to_string()));
 
                         // Print token usage if available
                         if let Some(usage) = json.get("usage") {
@@ -243,7 +252,8 @@ impl Repl {
                                 usage.get("completion_tokens").and_then(|t| t.as_u64()),
                             ) {
                                 let total = prompt + completion;
-                                println!("  {} {} prompt · {} generated · {} total",
+                                println!(
+                                    "  {} {} prompt · {} generated · {} total",
                                     "◦".truecolor(100, 100, 100),
                                     prompt.to_string().truecolor(150, 150, 150),
                                     completion.to_string().truecolor(150, 150, 150),
@@ -267,13 +277,10 @@ impl Repl {
         tokio::task::block_in_place(|| {
             tokio::runtime::Handle::current().block_on(async {
                 let tools = self.tool_registry.list().await;
-                tools.into_iter().map(|t| {
-                    ToolDefinition::new(
-                        t.name,
-                        t.description,
-                        t.input_schema
-                    )
-                }).collect()
+                tools
+                    .into_iter()
+                    .map(|t| ToolDefinition::new(t.name, t.description, t.input_schema))
+                    .collect()
             })
         })
     }
@@ -322,15 +329,21 @@ impl Repl {
     fn print_history(&self) {
         println!();
         if self.conversation_history.is_empty() {
-            println!("  {} {}",
+            println!(
+                "  {} {}",
                 "◦".truecolor(100, 100, 100),
                 "No conversation history".bright_black()
             );
         } else {
-            println!("  {} {}",
+            println!(
+                "  {} {}",
                 "◦".truecolor(147, 112, 219),
-                format!("Conversation history ({} messages)", self.conversation_history.len())
-                    .truecolor(147, 112, 219).bold()
+                format!(
+                    "Conversation history ({} messages)",
+                    self.conversation_history.len()
+                )
+                .truecolor(147, 112, 219)
+                .bold()
             );
             println!();
 
@@ -351,7 +364,8 @@ impl Repl {
                 let preview: String = content.chars().take(50).collect();
                 let suffix = if content.len() > 50 { "..." } else { "" };
 
-                println!("  {}. {}  {}{}",
+                println!(
+                    "  {}. {}  {}{}",
                     (i + 1).to_string().truecolor(100, 100, 100),
                     role_label,
                     preview.bright_white(),
@@ -364,7 +378,8 @@ impl Repl {
 
     fn print_config(&self) {
         println!();
-        println!("  {} {}",
+        println!(
+            "  {} {}",
             "⚙".truecolor(147, 112, 219),
             "Configuration".truecolor(147, 112, 219).bold()
         );
